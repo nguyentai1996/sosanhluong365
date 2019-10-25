@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_action_home"
+        android:icon="@drawable/bieudo"
+        android:title="So sánh" />
+    <item
+        android:id="@+id/bottom_action_note"
+        android:icon="@drawable/traodoi"
+        android:title="Ước tính " />
+    <item
+        android:id="@+id/bottom_action_notifi"
+        android:icon="@drawable/calulator"
+        android:title="Gross Net" />
+
+    <item
+        android:id="@+id/bottom_action_setting"
+        android:icon="@drawable/addpo"
+        android:title="Thêm" />
+</menu>

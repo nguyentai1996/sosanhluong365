@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="128.14dp"
+    android:layout_marginTop="11dp"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:background="@drawable/bodercarview"
+        android:id="@+id/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="128.14dp"
+>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="128.14dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginTop="20dp"
+                android:background="@drawable/boder_yellow"
+                android:id="@+id/imgUv"
+                android:layout_width="115dp"
+                android:layout_height="68dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/form" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:textColor="@color/colorYellow"
+                        android:fontFamily="Josefin Sans"
+                        android:id="@+id/tvName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="10dp"
+                        android:hint="Pham Thanh Hà"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/congty">
+
+                        </ImageView>
+
+                        <TextView
+                            android:layout_marginRight="5dp"
+                            android:singleLine="true"
+                            android:ellipsize="end"
+                            android:id="@+id/tvCongty"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:gravity="center_vertical"
+                            android:text="Nhân Viên Thiết Kế "
+                            android:textColor="@color/likeDark"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/vitri">
+
+                            </ImageView>
+
+                            <TextView
+                                android:singleLine="true"
+                                android:gravity="left"
+                                android:id="@+id/tvDiadiem"
+                                android:layout_width="60dp"
+                                android:layout_height="wrap_content"
+                                android:hint="Hà Nội"
+                                android:layout_marginLeft="10dp"
+                                android:textColor="#9F9F9F"
+                                android:textSize="10dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="20dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="0dp"
+                                android:src="@drawable/dongho">
+
+                            </ImageView>
+
+
+                            <TextView
+                                android:maxLength="1"
+                                android:id="@+id/tvTime"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:gravity="right"
+                                android:hint="08/9/2019"
+                                android:textColor="#9F9F9F"
+                                android:textSize="8sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="2dp"
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/salaryy">
+
+                        </ImageView>
+
+                        <TextView
+                            android:id="@+id/tvSalary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:gravity="left"
+                            android:hint="Hà Nội"
+                            android:textColor="@color/colorYellow"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnwebview"
+                        android:layout_width="109dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="7dp"
+                        android:background="#FFC712"
+                        android:fontFamily="Josefin Sans"
+                        android:gravity="center"
+                        android:text="Xem chi tiết"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"></Button>
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

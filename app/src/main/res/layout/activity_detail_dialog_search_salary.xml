@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.DetailDialogSearchSalary">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:id="@+id/lnVisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="182dp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/bgtop">
+
+                    <ImageView
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/imgTop"
+                        android:layout_width="113.37dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/bgsplassh">
+
+                    </ImageView>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <AutoCompleteTextView
+                        android:id="@+id/edNameJobSearchSalary"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_below="@+id/imagetop"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/boder"
+                        android:drawableLeft="@drawable/ic_search"
+                        android:drawableRight="@drawable/ic_action_name"
+                        android:drawablePadding="15dp"
+                        android:hint="Công việc bạn muốn lựa chọn"
+                        android:maxLines="1"
+                        android:textSize="12dp">
+
+                    </AutoCompleteTextView>
+
+
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/boder"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_height="40dp">
+
+                        <ImageView
+                            android:src="@drawable/ic_city"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"></ImageView>
+                        <TextView
+                            android:layout_marginLeft="15dp"
+                            android:id="@+id/nganhnghe"
+                            android:visibility="visible"
+                            android:drawableRight="@drawable/spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:text="Ngành nghề (phù hợp với công việc)">
+
+                        </TextView>
+
+                        <Spinner
+                            android:visibility="gone"
+                            android:id="@+id/SpCareerSearchSalary"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/imagetop"
+                            android:layout_gravity="center_horizontal"
+                            android:drawableRight="@drawable/spinner"
+                            android:drawablePadding="15dp"
+                            android:hint="Ngành nghề"
+                            android:maxLines="1"
+                            android:textSize="13sp">
+
+                        </Spinner>
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_below="@+id/tvThunhap"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+
+                    <Button
+                        android:id="@+id/edFindSalary"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="5.2"
+                        android:background="@drawable/styleedittext"
+                        android:inputType="number"
+                        android:text="Tra cứu lương"
+                        android:textColor="#FFFFFF"
+                        android:textSize="19dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="0.7"
+                        android:background="@drawable/styleedittext"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/imgMore"
+                            android:layout_width="22dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/union" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:fontFamily="SemiBold"
+                        android:text="Ước tính lương của bạn"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textColor="#FFC715"
+                        android:textSize="16dp"></TextView>
+
+
+
+                    <LinearLayout
+                        android:background="@drawable/boder_yellow"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvSalarySearch"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center"
+                            android:textAlignment="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorYellow"
+                            android:textSize="39dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginRight="20dp"
+                                android:text="Mức lương trung bình cho công việc"
+                                android:textAlignment="center"
+                                android:textColor="@color/dark"
+                                android:textSize="17dp">
+
+                            </TextView>
+
+                            <LinearLayout
+                                android:layout_marginBottom="25dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="của bạn là"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/dark"
+                                    android:textSize="17dp">
+
+                                </TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:text="15,950,000"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/colorYellow"
+                                    android:textSize="17dp">
+
+                                </TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:text="VND"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/dark"
+                                    android:textSize="17dp">
+
+                                </TextView>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal">
+
+
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:layout_marginTop="15dp"
+                            android:id="@+id/combinedChart"
+                            android:background="@color/white"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="350dp"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/bgsametableText"
+                        android:orientation="vertical">
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:textStyle="bold"
+                            android:text="Kết quả tra cứu lương"
+                            android:textAlignment="center"
+                            android:textAllCaps="true"
+                            android:textColor="#FFC715"
+                            android:textSize="16dp"></TextView>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@color/bgsametableText"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Vị trí việc làm: "
+                                android:textColor="@color/dark"
+                                android:textSize="15dp"
+                                ></TextView>
+
+                            <TextView
+                                android:id="@+id/tvNamejob"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="IT"
+                                android:textAllCaps="true"></TextView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@color/bgsametableText"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Ngành nghề: "
+                                android:textColor="@color/dark"
+                                android:textSize="15dp"
+                                ></TextView>
+
+                            <TextView
+                                android:id="@+id/tvCareer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="IT"
+                                android:textAllCaps="true"></TextView>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@color/bgsametableText"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Nơi làm việc: "
+                                android:textColor="@color/dark"
+                                android:textSize="15dp"
+                                ></TextView>
+
+                            <TextView
+                                android:id="@+id/tvAdress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAllCaps="true"></TextView>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/bgsametableText"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:textSize="15dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Bằng cấp: "
+                                android:textColor="@color/dark"
+                                ></TextView>
+
+                            <TextView
+                                android:id="@+id/tvLevel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="IT"
+                                android:textAllCaps="true"></TextView>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/bgsametableText"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Kinh nghiệm: "
+                                android:textColor="@color/dark"
+                                android:textSize="15dp"
+                                ></TextView>
+
+                            <TextView
+                                android:id="@+id/tvExprience"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="IT"
+                                android:textAllCaps="true"></TextView>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/bgsametableText"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:textSize="15dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Hình thức làm việc: "
+                                android:textColor="@color/dark"
+                                ></TextView>
+
+                            <TextView
+
+                                android:id="@+id/tvForm"
+                                android:text="IT"
+                                android:textAllCaps="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"></TextView>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/bgsametableText"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:textSize="15dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Giới tính: "
+                                android:textColor="@color/dark"
+                                ></TextView>
+
+                            <TextView
+                                android:id="@+id/tvGender"
+                                android:text="IT"
+                                android:textAllCaps="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"></TextView>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/bgsametableText"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:textSize="15dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Cấp bậc: "
+                                android:textColor="@color/dark"
+                                ></TextView>
+
+                            <TextView
+                                android:id="@+id/tvRank"
+                                android:text="IT"
+                                android:textAllCaps="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"></TextView>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/mucluong"
+                            android:text="Mức lương IT trung bình là 15,950,000 VND"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                        </TextView>
+
+                        <TextView
+                            android:textAlignment="center"
+                            android:layout_below="@+id/mucluong"
+                            android:text="( Kết qủa tổng hợp từ 119 tin tuyển dụng trên website timviec365.vn)"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"></TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:background="@color/bgsametableText"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:textStyle="bold"
+                            android:text="Các công việc và lương
+                                hàng đầu liên quan"
+                            android:textAlignment="center"
+                            android:textAllCaps="true"
+                            android:textColor="#FFC715"
+                            android:textSize="16dp">
+
+                        </TextView>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcv_ntd"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

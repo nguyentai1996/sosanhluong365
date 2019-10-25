@@ -1,0 +1,1318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".fragment.GrossNetFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <LinearLayout
+                android:gravity="top"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="182dp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/bgtop">
+
+                    <ImageView
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/imgTop"
+                        android:layout_width="113.37dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/bgsplassh">
+
+                    </ImageView>
+
+                </LinearLayout>
+
+                <RelativeLayout
+
+            android:background="@drawable/editt"
+            android:id="@+id/rlInput"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/imgTop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/rlthunhap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+
+                    <EditText
+                        android:hint="0"
+                        android:textSize="12sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_below="@+id/tvThunhap"
+                        android:id="@+id/edSalary"
+                        android:layout_width="match_parent"
+                        android:layout_height="29dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/edit"
+                        android:inputType="number"
+                        android:paddingLeft="15dp" />
+
+
+
+
+                <TextView
+                    android:id="@+id/tvThunhap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Thu nhập của bạn (VND)"
+                    android:textColor="#000000"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:gravity="center_horizontal"
+                android:id="@+id/rl2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlthunhap">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvBaohiem"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    <RadioGroup
+                        android:id="@+id/radioGr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RadioButton
+                            android:layout_marginLeft="15dp"
+                            android:id="@+id/btnSlary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:textSize="12dp"
+                            />
+
+
+                            <RadioButton
+                                android:textSize="12dp"
+                                android:layout_marginLeft="15dp"
+                                android:id="@+id/btnOther"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="false"
+                                />
+                    </RadioGroup>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/radioGr">
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/tvUp"
+            android:textSize="12sp"
+            android:textColor="@color/dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trên lương chính thức"></TextView>
+
+        <TextView
+            android:layout_marginTop="18dp"
+            android:layout_below="@+id/tvUp"
+            android:textSize="12sp"
+            android:id="@+id/tvdown"
+            android:textColor="@color/dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Khác"></TextView>
+
+        <EditText
+            android:paddingLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/tvUp"
+            android:background="@drawable/edit"
+            android:layout_toRightOf="@+id/tvdown"
+            android:textSize="12sp"
+            android:textColor="@color/dark"
+            android:id="@+id/other"
+            android:hint="0"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="29dp"></EditText>
+    </RelativeLayout>
+</RelativeLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvBaohiem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Đóng bảo hiểm"
+                    android:textColor="#000000"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:id="@+id/rl4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl2"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:textSize="12dp"
+                    android:layout_width="match_parent"
+                    android:id="@+id/tvKhuvuc"
+                    android:layout_height="wrap_content"
+                    android:text="Vùng"
+                    android:textColor="#000000"
+                    android:gravity="left"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    >
+
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/btnOne"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="I" />
+
+                        <RadioButton
+                            android:id="@+id/btnTwo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:checked="false"
+                            android:text="II" />
+
+                        <RadioButton
+                            android:id="@+id/btnThree"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:checked="false"
+                            android:text="III" />
+
+                        <RadioButton
+                            android:id="@+id/btnFour"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:checked="false"
+                            android:text="IV" />
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rl5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl4"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                >
+
+
+                <TextView
+                    android:textSize="12dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/tvSonguoi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Số người phụ thuộc (nguời)"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:textSize="12sp"
+                    android:hint="0"
+                    android:id="@+id/edDependent"
+                    android:layout_width="match_parent"
+                    android:layout_height="29dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit"
+                    android:inputType="number"
+                    android:paddingLeft="15dp"
+                     />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnbtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl5"
+                android:layout_marginTop="10dp"
+                android:gravity="right"
+                android:weightSum="6">
+
+                <Button
+
+                    android:background="@drawable/edit"
+                    android:id="@+id/btnGrossNet"
+                    android:layout_width="0dp"
+                    android:layout_height="29dp"
+                    android:layout_weight="1.8"
+                    android:layout_marginBottom="20dp"
+                    android:textSize="10dp"
+                    android:text="Gross -> Net" />
+
+                <Button
+                    android:background="@drawable/edit"
+                    android:id="@+id/btnNetGross"
+                    android:layout_width="0dp"
+                    android:layout_height="29dp"
+                    android:textSize="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1.8"
+                    android:text="Net -> Gross" />
+            </LinearLayout>
+
+
+</RelativeLayout>
+
+
+
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:collapseColumns=""
+                    android:shrinkColumns="*"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:stretchColumns="*"
+                    android:background="#ffffff">
+
+
+                    <TableRow
+                        android:id="@+id/tableRow1"
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Lương Gross"
+                            android:textSize="12dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorYellow"
+                            android:textColor="@color/white"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_height="25dp"
+                            android:id="@+id/TextView02"
+                            android:text="Bảo hiểm"
+                            android:textSize="12dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorYellow"
+                            android:textColor="@color/white"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="1dp"
+                            android:id="@+id/TextView03"
+                            android:text="Thuế TNCN"
+                            android:layout_weight="1"
+                            android:background="@color/colorYellow"
+                            android:textColor="@color/white"
+                            android:padding="5dip"
+                            android:textSize="12dp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="1dp"
+                            android:id="@+id/TextView04"
+                            android:layout_weight="1"
+                            android:background="@color/colorYellow"
+                            android:gravity="center"
+                            android:padding="5dip"
+                            android:textSize="12dp"
+                            android:text="Lương Net"
+                            android:textColor="@color/white" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow2"
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:id="@+id/tvGrossSalary"
+                            android:layout_height="25dp"
+                            android:text="0"
+                            android:textSize="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_height="25dp"
+                            android:id="@+id/tvInsurrance"
+                            android:text="0"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:text="0"
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="1dp"
+                            android:id="@+id/tvIncomeTax"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:textSize="10dp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="1dp"
+                            android:id="@+id/tvNetSalary"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:gravity="center"
+                            android:padding="5dip"
+                            android:textSize="10dp"
+                            android:text="0"
+/>
+                    </TableRow>
+
+                </TableLayout>
+
+
+                <TextView
+                    android:textStyle="bold"
+                    android:text="Diễn giải chi tiết (VND)"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:textSize="12dp"
+                    android:textColor="@color/dark"
+                    android:layout_height="wrap_content"></TextView>
+
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:collapseColumns=""
+                    android:shrinkColumns="*"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:stretchColumns="*"
+                    android:background="#ffffff">
+
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Lương Gross"
+                            android:textSize="12dp"
+                            android:layout_weight="3"
+                            android:background="@color/colorYellow"
+                            android:textColor="@color/white"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Bảo hiểm"
+                            android:textSize="12dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorYellow"
+                            android:textColor="@color/white"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Bảo hiểm xã hội(8%)"
+                            android:textSize="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_height="25dp"
+                            android:id="@+id/tvSocialInsurance"
+                            android:text="0"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:id="@+id/tvSocialnsurance"
+                            android:layout_height="25dp"
+                            android:text="Bảo hiểm y tế"
+                            android:textSize="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_height="25dp"
+                            android:id="@+id/tvHealthInsurance"
+                            android:text="0"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                    </TableRow>
+
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Bảo hiểm thất nghiệp (1%)"
+                            android:textSize="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/tvUnemployment"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:gravity="center"
+                            android:padding="5dip"
+                            android:text="0"
+                            android:textColor="@color/dark"
+                            android:textSize="10dp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Thu nhập trước thuế"
+                            android:textSize="12dp"
+                            android:layout_weight="3"
+                            android:background="@color/colorYellow"
+                            android:textColor="@color/white"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/TNTT"
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorYellow"
+                            android:gravity="center"
+                            android:padding="5dip"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                    </TableRow>
+
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Giảm trừ gia cảnh bản thân"
+                            android:textSize="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_height="25dp"
+                            android:id="@+id/tvHealthInsur"
+                            android:text="- 9000000"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Giảm trừ gia cảnh người phụ thuộc"
+                            android:textSize="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/tvFamily"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:gravity="center"
+                            android:padding="5dip"
+                            android:text="0"
+                            android:textColor="@color/dark"
+                            android:textSize="10dp" />
+
+                    </TableRow>
+
+
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Thu nhập chịu thuế"
+                            android:textSize="12dp"
+                            android:layout_weight="3"
+                            android:background="@color/colorYellow"
+                            android:textColor="@color/white"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:id="@+id/TNCT"
+                            android:layout_height="25dp"
+                            android:text="0"
+                            android:textSize="12dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorYellow"
+                            android:textColor="@color/white"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                    </TableRow>
+
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Thuế thu nhập cá nhân (*)"
+                            android:textSize="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:id="@+id/TTNCN"
+                            android:layout_height="25dp"
+                            android:text="0"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Lương Net"
+                            android:textSize="12dp"
+                            android:layout_weight="3"
+                            android:background="@color/colorYellow"
+                            android:textColor="@color/white"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="0"
+                            android:id="@+id/tvNet"
+                            android:textSize="12dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorYellow"
+                            android:textColor="@color/white"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                    </TableRow>
+
+
+                </TableLayout>
+
+
+                <TextView
+                    android:textStyle="bold"
+                    android:text="(*) Chi tiết thuế thu nhập cá nhân"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:textSize="12dp"
+                    android:textColor="@color/dark"
+                    android:layout_height="wrap_content"></TextView>
+
+
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:collapseColumns=""
+                    android:shrinkColumns="*"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:stretchColumns="*"
+                    android:background="#ffffff">
+
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="5"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Lương Gross"
+                            android:textSize="12dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorYellow"
+                            android:textColor="@color/white"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Thuế suất"
+                            android:textSize="12dp"
+                            android:layout_weight="1"
+                        android:layout_marginLeft="1dp"
+                            android:background="@color/colorYellow"
+                            android:textColor="@color/white"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Tiền nộp"
+                            android:textSize="12dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorYellow"
+                            android:textColor="@color/white"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Dưới 5 triệu"
+                            android:textSize="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="5%"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:id="@+id/TaxTNCN5"
+                            android:layout_height="25dp"
+                            android:text="0"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Từ 5 triệu - 10 triệu"
+                            android:textSize="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="10%"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:layout_height="25dp"
+                            android:id="@+id/TaxTNCN10"
+                            android:text="0"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                    </TableRow>
+
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Từ 10 triệu - 18 triệu"
+                            android:textSize="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="15%"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:id="@+id/TaxTNCN15"
+                            android:text="0"
+                            android:layout_height="25dp"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Từ 52 triệu - 80 triệu"
+                            android:textSize="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="20%"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:id="@+id/TaxTNCN20"
+                            android:text="0"
+                            android:layout_height="25dp"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                    </TableRow>
+
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Từ 32 triệu - 52 triệu"
+                            android:textSize="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="25%"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:id="@+id/TaxTNCN25"
+                            android:text="0"
+                            android:layout_height="25dp"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                    </TableRow>
+
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Từ 52 triệu - 80 triệu"
+                            android:textSize="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="30%"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:id="@+id/TaxTNCN30"
+                            android:text="0"
+                            android:layout_height="25dp"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                    </TableRow>
+
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Trên 80 triệu"
+                            android:textSize="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="35%"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:id="@+id/TaxTNCN35"
+                            android:text="0"
+                            android:layout_height="25dp"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                    </TableRow>
+
+
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:text="Nguời lao động trả(VND)"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="match_parent"
+                        android:textSize="12dp"
+                        android:textColor="@color/dark"
+                        android:layout_height="wrap_content"></TextView>
+
+
+
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Lương Gross"
+                            android:textSize="10dp"
+                            android:layout_weight="3"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:id="@+id/tvGross"
+                            android:layout_height="25dp"
+                            android:text="0"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Bảo hiểm xã hội (17%)"
+                            android:textSize="10dp"
+                            android:layout_weight="3"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_height="25dp"
+                            android:id="@+id/tvBHXH_NTD"
+                            android:text="0"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Bảo hiểm y tế (3%)"
+                            android:textSize="10dp"
+                            android:layout_weight="3"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:id="@+id/tvBHYT_NTD"
+                            android:layout_height="25dp"
+                            android:text="0"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Bảo hiểm tai nạn lao động (0.5%)"
+                            android:textSize="10dp"
+                            android:layout_weight="3"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:id="@+id/tvBHTNLD_NTD"
+                            android:layout_height="25dp"
+                            android:text="0"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Bảo hiểm thất nghiệp (1%)"
+                            android:textSize="10dp"
+                            android:layout_weight="3"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:id="@+id/tvBHTN_NTD"
+                            android:layout_height="25dp"
+                            android:text="0"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/tableText"
+                            android:textColor="@color/dark"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+
+                    </TableRow>
+
+
+
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="25dp"
+                            android:text="Tổng cộng"
+                            android:textSize="12dp"
+                            android:layout_weight="3"
+                            android:background="@color/colorYellow"
+                            android:textColor="@color/white"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                        <TextView
+                            android:id="@+id/tvTax"
+                            android:layout_height="25dp"
+                            android:text="0"
+                            android:textSize="12dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorYellow"
+                            android:textColor="@color/white"
+                            android:padding="5dip"
+                            android:gravity="center"/>
+                    </TableRow>
+
+                </TableLayout>
+            </LinearLayout>
+
+
+
+
+        </RelativeLayout>
+
+
+    </FrameLayout>
+
+
+</ScrollView>

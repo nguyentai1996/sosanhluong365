@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="263dp"
+    android:layout_height="220dp"
+    android:layout_marginLeft="18dp"
+    android:layout_marginTop="11dp"
+    android:background="@drawable/bodercarview"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:scaleType="centerCrop"
+        android:layout_marginLeft="5dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="7dp"
+        android:id="@+id/imgUv"
+        android:layout_width="247dp"
+        android:layout_height="140dp"
+        android:src="@drawable/form" />
+
+    <TextView
+        android:textColor="#3E3F68"
+        android:layout_marginLeft="12.3dp"
+        android:textSize="17sp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:text="Công ty cổ phần thanh toán Hưng Hà"
+        android:id="@+id/tvTitle"
+        android:singleLine="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></TextView>
+
+    <LinearLayout
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="12.3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Ngày đăng:"
+            android:textColor="@color/dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
+    <TextView
+        android:background="@drawable/boderbuttom"
+        android:textColor="@color/white"
+
+        android:id="@+id/tvTime"
+        android:text="15/10/2016"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_width="100dp"
+        android:layout_marginLeft="12.3dp"
+        android:textSize="14sp"
+        android:layout_height="25dp"></TextView>
+    </LinearLayout>
+</LinearLayout>

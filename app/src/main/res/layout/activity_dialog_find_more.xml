@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".fragmentDialog.FindMoreDialog">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="30dp"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:background="@drawable/boder"
+            android:gravity="center_vertical"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/adress">
+
+            </ImageView>
+
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/tvCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/spinner"
+                android:drawablePadding="15dp"
+                android:text="Chọn nơi làm việc"
+                android:textSize="12sp"
+                android:visibility="visible">
+
+            </TextView>
+
+            <Spinner
+                android:id="@+id/spCity"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="chọn nơi làm việc"
+                android:textSize="12dp"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:background="@drawable/boder"
+            android:gravity="center_vertical"
+            android:layout_height="40dp">
+
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/level">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/tvLevel"
+                android:visibility="visible"
+                android:drawableRight="@drawable/spinner"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Chọn bằng cấp">
+
+            </TextView>
+            <Spinner
+                android:visibility="invisible"
+                android:textSize="12sp"
+                android:id="@+id/spLevel"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                />
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:background="@drawable/boder"
+            android:gravity="center_vertical"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/experience">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/tvExp"
+                android:visibility="visible"
+                android:layout_marginLeft="10dp"
+                android:drawableRight="@drawable/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Chọn kinh nghiệm">
+
+            </TextView>
+
+
+            <Spinner
+                android:visibility="invisible"
+                android:hint="chọn kinh nghiệm"
+                android:textSize="12dp"
+                android:id="@+id/spExperience"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:background="@drawable/boder"
+            android:gravity="center_vertical"
+            android:layout_height="40dp">
+
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/form">
+
+            </ImageView>
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/tvForm"
+                android:visibility="visible"
+                android:drawableRight="@drawable/spinner"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Chọn hình thưc làm việc">
+
+            </TextView>
+            <Spinner
+                android:visibility="invisible"
+                android:drawablePadding="15dp"
+                android:hint="chọn hình thức làm việc"
+                android:textSize="12dp"
+                android:id="@+id/spform"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                />
+
+</LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:background="@drawable/boder"
+            android:gravity="center_vertical"
+            android:layout_height="40dp">
+
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/gender">
+
+            </ImageView>
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/tvGender"
+                android:visibility="visible"
+
+                android:drawableRight="@drawable/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Chọn giới tính">
+
+            </TextView>
+
+            <Spinner
+                android:visibility="invisible"
+                android:drawablePadding="15dp"
+                android:textSize="12dp"
+                android:id="@+id/spGender"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:background="@drawable/boder"
+            android:gravity="center_vertical"
+            android:layout_height="40dp">
+
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/rank">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/tvRank"
+                android:visibility="visible"
+                android:drawableRight="@drawable/spinner"
+               android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Chọn cấp bậc">
+
+            </TextView>
+
+            <Spinner
+                android:visibility="invisible"
+                android:hint="chọn cấp bậc"
+                android:textSize="12dp"
+                android:id="@+id/spRank"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                />
+
+
+</LinearLayout>
+
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/edFind"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/styleedittext"
+            android:inputType="number"
+            android:paddingLeft="15dp"
+            android:text="Tra cứu lương"
+            android:textColor="#FFFFFF"
+            android:textSize="19dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvExit"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:textColor="#FFC712"
+            android:text="Huỷ"
+            android:gravity="center"
+            android:textSize="19dp"
+            android:fontFamily="Regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+
+
+    </LinearLayout>
+</LinearLayout>

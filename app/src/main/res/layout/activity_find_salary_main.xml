@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="SemiBold"
+                android:text="Tra cứu lương trung bình"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="#FFC715"
+                android:textSize="16dp">
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="SemiBold"
+                android:text="theo vị trí công việc"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:layout_marginBottom="15dp"
+                android:textColor="#FFC715"
+                android:textSize="16dp">
+
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_margin="15dp"
+                android:src="@drawable/img_tracuuluong"></ImageView>
+
+
+            <TextView
+                android:textSize="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="-20dp"
+                android:text="Những vị trí công việc tương đương đang được tuyển dụng"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/dark"
+                tools:ignore="RtlCompat"></TextView>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bgsametableText"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+
+            <TextView
+                android:textSize="15dp"
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="-20dp"
+                android:layout_marginRight="-10dp"
+                android:text="Biết mức lương đang được các công ty trả cho vị trí công việc"
+                android:textAlignment="viewStart"
+                android:textColor="@color/dark"
+                tools:ignore="RtlCompat"></TextView>
+
+            <ImageView
+                android:layout_margin="15dp"
+                android:layout_weight="2"
+                android:src="@drawable/img_tracuuluong"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"></ImageView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_margin="15dp"
+                android:src="@drawable/img_tracuuluong"
+                android:layout_width="125dp"
+                android:layout_height="125dp"></ImageView>
+
+            <TextView
+                android:textSize="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="-20dp"
+                android:text="Những vị trí công việc tương đương đang được tuyển dụng"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/dark"
+                tools:ignore="RtlCompat"></TextView>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

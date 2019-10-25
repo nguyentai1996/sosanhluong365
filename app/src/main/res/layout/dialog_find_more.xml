@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:background="@drawable/boder"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:weightSum="6">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/adress"></ImageView>
+
+                <EditText
+
+                    android:background="@color/cardview_light_background"
+                    android:layout_marginTop="-3dp"
+                    android:layout_marginLeft="15dp"
+                    android:hint="chọn nơi làm việc"
+                    android:textSize="12dp"
+                    android:id="@+id/edAdress"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    />
+
+                <Spinner
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="5dp"
+                    android:layout_height="6dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/spinner" />
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:id="@+id/lnSpiner"
+                android:background="@drawable/boder"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:weightSum="6">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+                    android:src="@drawable/level"></ImageView>
+
+                <EditText
+                    android:background="@color/cardview_light_background"
+                    android:layout_marginTop="-3dp"
+                    android:layout_marginLeft="15dp"
+                    android:hint="chọn bằng cấp"
+                    android:textSize="12dp"
+                    android:id="@+id/edLevel"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    />
+
+
+                <Spinner
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="5dp"
+                    android:layout_height="6dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/spinner" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:background="@drawable/boder"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:weightSum="6">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/experience"></ImageView>
+
+                <EditText
+                    android:background="@color/cardview_light_background"
+                    android:layout_marginTop="-3dp"
+                    android:layout_marginLeft="15dp"
+                    android:hint="chọn kinh nghiệm"
+                    android:textSize="12dp"
+                    android:id="@+id/edExperience"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    />
+
+
+                <Spinner
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="5dp"
+                    android:layout_height="6dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/spinner" />
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:background="@drawable/boder"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:weightSum="6">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/form"></ImageView>
+
+                <EditText
+                    android:background="@color/cardview_light_background"
+                    android:layout_marginTop="-3dp"
+                    android:layout_marginLeft="15dp"
+                    android:hint="chọn hình thức làm việc"
+                    android:textSize="12dp"
+                    android:id="@+id/edJob"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    />
+
+
+                <Spinner
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="5dp"
+                    android:layout_height="6dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/spinner" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/boder"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:weightSum="6">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/gender"></ImageView>
+
+                <EditText
+                    android:background="@color/cardview_light_background"
+                    android:layout_marginTop="-3dp"
+                    android:layout_marginLeft="15dp"
+                    android:hint="chọn giới tính"
+                    android:textSize="12dp"
+                    android:id="@+id/edGender"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    />
+
+                <Spinner
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="5dp"
+                    android:layout_height="6dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/spinner" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/boder"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:weightSum="6">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/rank"></ImageView>
+
+                <EditText
+                    android:background="@color/cardview_light_background"
+                    android:layout_marginTop="-3dp"
+                    android:layout_marginLeft="15dp"
+                    android:hint="chọn cấp bậc"
+                    android:textSize="12dp"
+                    android:id="@+id/edRank"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="40dp"
+                    />
+
+
+                <Spinner
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="5dp"
+                    android:layout_height="6dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/spinner" />
+            </LinearLayout>
+
+
+
+
+
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/edFind"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/styleedittext"
+                android:inputType="number"
+                android:paddingLeft="15dp"
+                android:text="Tra cứu lương"
+                android:textColor="#FFFFFF"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvExit"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:textColor="#FFC712"
+                android:text="Huỷ"
+                android:gravity="center"
+                android:textSize="19dp"
+                android:fontFamily="Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </TextView>
+    </LinearLayout>
+    </LinearLayout>
+
