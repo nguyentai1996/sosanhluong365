@@ -97,8 +97,6 @@ public class FindMoreDialog extends DialogFragment {
         edFindSalaryDiaLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                     Intent intent = new Intent(getContext(), DetailDialogSearchSalary.class);
                     intent.putExtra("positionExpx", String.valueOf(positionExpx));
                     intent.putExtra("positionCityx", String.valueOf(postionCityx));

@@ -280,6 +280,7 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
                     tvSalarySearch.setText(dataSearchSalary.getData().get(1).getIndexLabel() + "\n" + "Nghìn");
                     tvSalaryDown.setText(dataSearchSalary.getData().get(1).getIndexLabel() + " Nghìn");
                     tvSalaryDown2.setText(dataSearchSalary.getData().get(1).getIndexLabel()  + " Nghìn");
+                    tvSalaryDown2.setTextColor(getResources().getColor(R.color.colorYellow));
                     dataChart1 = String.valueOf(dataSearchSalary.getData().get(0).getY());
                     dataChart2 = String.valueOf(dataSearchSalary.getData().get(1).getY());
                     dataChart3 = String.valueOf(dataSearchSalary.getData().get(2).getY());

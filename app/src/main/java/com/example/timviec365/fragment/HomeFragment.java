@@ -349,4 +349,9 @@ public class HomeFragment extends Fragment implements OnChartValueSelectedListen
         context.registerReceiver(NetworkChangeReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
+    public void tvedit(View view) {
+        Intent intent = new Intent(getContext(), HistoryActivity.class);
+        startActivity(intent);
+    }
+
 }

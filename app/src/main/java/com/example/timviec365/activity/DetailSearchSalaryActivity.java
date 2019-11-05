@@ -162,7 +162,7 @@ public class DetailSearchSalaryActivity extends AppCompatActivity  implements On
                     Toast.makeText(DetailSearchSalaryActivity.this, "Ngành nghề bạn nhập vào chưa đúng", Toast.LENGTH_SHORT).show();
                 }else {
                     showAlertDialog(edNameJob.getText().toString().trim(), careerArrayList.get(postionSpinner).getIdCat(), careerArrayList.get(postionSpinner).getNameCat());
-                Log.d("yeah",careerArrayList.get(postionSpinner).getIdCat());
+                Log.d("yeah",careerArrayList.get(postionSpinner).getNameCat());
                 }
             }
         });
@@ -270,16 +270,16 @@ public class DetailSearchSalaryActivity extends AppCompatActivity  implements On
         entries.add(new Entry(5, dataChart3));
 
 
-        LineDataSet set = new LineDataSet(entries, "Doanh số theo tháng");
+        LineDataSet set = new LineDataSet(entries, "Lương theo tháng (VND)");
         set.setColor(Color.GREEN);
         set.setLineWidth(5f);
-        set.setCircleColor(Color.GREEN);
-        set.setCircleRadius(5f);
+        set.setCircleColor(Color.RED);
+        set.setCircleRadius(7f);
         set.setFillColor(Color.GREEN);
         set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         set.setDrawValues(true);
-        set.setValueTextSize(20f);
-        set.setValueTextColor(Color.GREEN);
+        set.setValueTextSize(15f);
+        set.setValueTextColor(Color.RED);
         mChart.setTouchEnabled(false);
         mChart.setDragEnabled(false);
         mChart.setPinchZoom(false);
@@ -343,7 +343,8 @@ public class DetailSearchSalaryActivity extends AppCompatActivity  implements On
                         dataSearchSalary.getData().get(0).getY();
                         tvSalarySearch.setText(dataSearchSalary.getData().get(1).getIndexLabel() + "\n" + "Nghìn");
                         tvSalaryDown.setText(String.valueOf(dataSearchSalary.getData().get(1).getIndexLabel()) );
-                        tvSalaryDown2.setText(String.valueOf(dataSearchSalary.getData().get(1).getIndexLabel()) );
+                        tvSalaryDown2.setText(String.valueOf(dataSearchSalary.getData().get(1).getIndexLabel()) + "Nghìn" );
+                        tvSalaryDown2.setTextColor(getResources().getColor(R.color.colorYellow));
                         dataChart1 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(0).getY()));
                         dataChart2 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(1).getY()));
                         dataChart3 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(2).getY()));
@@ -400,6 +401,7 @@ public class DetailSearchSalaryActivity extends AppCompatActivity  implements On
             }
         });
     }
+
 
     public void getDataCompanyNumberOne2() {
 
@@ -460,50 +462,6 @@ public class DetailSearchSalaryActivity extends AppCompatActivity  implements On
         return cList;
     }
 
-    public ArrayList<Career> getDataCeareer(String filename2) {
-        JSONObject jsonArray = null;
-
-        ArrayList<Career> cListCareer = new ArrayList<>();
-        try {
-            InputStream inputStream = getResources().getAssets().open(filename2);
-            int size = inputStream.available();
-            byte[] data = new byte[size];
-            inputStream.read(data);
-            inputStream.close();
-            String json = new String(data, "UTF-8");
-            jsonArray = new JSONObject(json);
-            if (jsonArray != null) {
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    cListCareer.add(new Career(jsonArray.getJSONArray("db_category").getJSONObject(i).getString("cat_id"),
-                            jsonArray.getJSONArray("db_category").getJSONObject(i).getString("cat_name")));
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return cListCareer;
-    }
-
-    private void spinerCareer() {
-
-        Career career1 = new Career();
-        career1.setNameCat("Không chọn");
-        career1.setIdCat("-1");
-        careerArrayList.add(career1);
-
-        Career career = new Career();
-        career.setNameCat("Không yêu cầu");
-        career.setIdCat("0");
-        careerArrayList.add(career);
-
-        careerArrayList.addAll(getDataCeareer("adress.json"));
-        ArrayAdapter<Career> adapter = new ArrayAdapter<Career>(DetailSearchSalaryActivity.this, R.layout.spinner_layout, R.id.tvSpiner, careerArrayList);
-
-        edCareerSearchSalary.setAdapter(adapter);
-
-    }
 
 
     public void demoRetroGetDataSearch() {
@@ -552,6 +510,51 @@ public class DetailSearchSalaryActivity extends AppCompatActivity  implements On
         });
     }
 
+
+    public ArrayList<Career> getDataCeareer(String filename2) {
+        JSONObject jsonArray = null;
+
+        ArrayList<Career> cListCareer = new ArrayList<>();
+        try {
+            InputStream inputStream = getResources().getAssets().open(filename2);
+            int size = inputStream.available();
+            byte[] data = new byte[size];
+            inputStream.read(data);
+            inputStream.close();
+            String json = new String(data, "UTF-8");
+            jsonArray = new JSONObject(json);
+            if (jsonArray != null) {
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    cListCareer.add(new Career(jsonArray.getJSONArray("db_category").getJSONObject(i).getString("cat_id"),
+                            jsonArray.getJSONArray("db_category").getJSONObject(i).getString("cat_name")));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return cListCareer;
+    }
+
+    private void spinerCareer() {
+
+        Career career1 = new Career();
+        career1.setNameCat("Không chọn");
+        career1.setIdCat("-1");
+        careerArrayList.add(career1);
+
+        Career career = new Career();
+        career.setNameCat("Không yêu cầu");
+        career.setIdCat("0");
+        careerArrayList.add(career);
+
+        careerArrayList.addAll(getDataCeareer("adress.json"));
+        ArrayAdapter<Career> adapter = new ArrayAdapter<Career>(DetailSearchSalaryActivity.this, R.layout.spinner_layout, R.id.tvSpiner, careerArrayList);
+
+        edCareerSearchSalary.setAdapter(adapter);
+
+    }
 
     @Override
     public void onValueSelected(Entry e, Highlight h) {
