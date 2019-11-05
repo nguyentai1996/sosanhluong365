@@ -19,8 +19,8 @@
     <color name="blue">#28A5EE</color>
     <color name="yellow">#FFD52E</color>
     <color name="bluewhite">#14B2BD</color>
-    <color name="pink">#E226FF</color>green
+    <color name="pink">#E226FF</color>
     <color name="orange">#FF6906</color>
     <color name="pinkwhite">#F56EAD</color>
-    <color name="btngrossnet">#F5F5F5</color>
+    <color name="background">#dddddd</color>
 </resources>

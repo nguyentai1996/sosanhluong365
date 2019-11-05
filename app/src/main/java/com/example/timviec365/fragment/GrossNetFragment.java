@@ -152,7 +152,7 @@ public class GrossNetFragment extends Fragment {
                 btnGrossNet.setBackgroundColor(getResources().getColor(R.color.yellow));
                 btnGrossNet.setTextColor(getResources().getColor(R.color.white));
                 btnNetGross.setTextColor(getResources().getColor(R.color.yellow));
-                btnNetGross.setBackgroundColor(getResources().getColor(R.color.btngrossnet));
+                btnNetGross.setBackgroundColor(getResources().getColor(R.color.white));
 
 
                 salaryGrossNet = edSalary.getText().toString();
@@ -513,7 +513,7 @@ public class GrossNetFragment extends Fragment {
             public void onClick(View view) {
                 Locale localeEN = new Locale("en", "EN");
                 NumberFormat en = NumberFormat.getInstance(localeEN);
-                btnGrossNet.setBackgroundColor(getResources().getColor(R.color.btngrossnet));
+                btnGrossNet.setBackgroundColor(getResources().getColor(R.color.white));
                 btnNetGross.setBackgroundColor(getResources().getColor(R.color.yellow));
                 btnGrossNet.setTextColor(getResources().getColor(R.color.yellow));
                 btnNetGross.setTextColor(getResources().getColor(R.color.white));

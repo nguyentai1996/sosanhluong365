@@ -23,6 +23,7 @@ import com.example.timviec365.activity.WebViewActivity;
 import com.example.timviec365.adapter.NewsAdapter;
 import com.example.timviec365.config.JobRetrofit;
 import com.example.timviec365.model.DataNews;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,7 @@ public class compareFragment extends Fragment {
     private LinearLayout lnShare;
     private NewsAdapter adapterRCV;
     private LinearLayout lnAboutMe;
+    private ShimmerFrameLayout mShimmerViewContainer;
 
     public compareFragment() {
         // Required empty public constructor
@@ -59,6 +61,9 @@ public class compareFragment extends Fragment {
         lnAboutMe = (LinearLayout) view.findViewById(R.id.lnAboutMe);
         imgConectApp = (LinearLayout) view.findViewById(R.id.imgConectApp);
 
+
+
+        mShimmerViewContainer = view.findViewById(R.id.shimmer_view_container);
         lnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,7 +116,8 @@ public class compareFragment extends Fragment {
                     adapterRCV.updateData(response.body());
                     adapterRCV.notifyDataSetChanged();
 
-
+                    mShimmerViewContainer.stopShimmerAnimation();
+                    mShimmerViewContainer.setVisibility(View.GONE);
 
                 } else {
                     Toast.makeText(getContext(), "Không có dữ liệu", Toast.LENGTH_SHORT).show();
@@ -135,6 +141,19 @@ public class compareFragment extends Fragment {
                 .setText("http://www.url.com")
                 .startChooser();
 
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mShimmerViewContainer.startShimmerAnimation();
+    }
+
+    @Override
+    public void onPause() {
+        mShimmerViewContainer.stopShimmerAnimation();
+        super.onPause();
     }
 
 }
