@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="10dp"
+    android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:id="@+id/title"
+                android:textColor="@color/textsamewhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:fontFamily="@font/josefregular"
+                android:textAllCaps="true"
+                android:singleLine="true"
+                android:textSize="15sp" />
+
+
+            <TextView
+                android:textColor="@color/textsamewhite"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ở"
+                android:fontFamily="@font/josefregular"
+                android:singleLine="true"
+                android:textSize="15sp" />
+
+            <TextView
+                android:textColor="@color/textsamewhite"
+                android:layout_marginLeft="5dp"
+                android:singleLine="true"
+                android:fontFamily="@font/josefregular"
+                android:id="@+id/subTitle"
+                android:textSize="15dp"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="subTitle" />
+        </LinearLayout>
+        <ImageView
+            android:layout_marginLeft="-40dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/clear"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/ic_dele" />
+</LinearLayout>

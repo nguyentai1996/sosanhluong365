@@ -10,12 +10,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.timviec365.R;
@@ -40,11 +37,12 @@ public class FindMoreDialog extends DialogFragment {
     private String title = "";
     private String career = "";
 
-    public static FindMoreDialog newInstance(String key, String career) {
+    public static FindMoreDialog newInstance(String key, String career,String nameCity) {
         FindMoreDialog frag = new FindMoreDialog();
         Bundle args = new Bundle();
         args.putString("findkey", key);
         args.putString("nganhnghe", career);
+        args.putString("nameCity", nameCity);
         frag.setArguments(args);
         return frag;
     }
@@ -52,12 +50,12 @@ public class FindMoreDialog extends DialogFragment {
 
     String[] capbacArray, levelArray, formArray, genderArray, expArray;
     List<String> capbac, level, form, gender, exp;
-    private EditText tvExit;
+    private TextView tvExit;
     private Dialog dialog;
     private TextView tvForm, tvLevel, tvRank, tvCity, getTvForm, tvGender, tvExp;
     private int positionExpx, positionGenderx, positionRankx, positionLevelx, positionFormx;
-    private String postionCityx, positionHinhthuc, postionBangcap, nameCity, nameBangcap;
-    private String positionExp, positionGender, positionRank, positionLevel, positionForm;
+    private String postionCityx = "", positionHinhthuc, postionBangcap, nameCity, nameBangcap;
+    private String positionExp = "", positionGender = "", positionRank = "", positionLevel = "", positionForm= "";
     private Spinner spCity, spLevel, spExperience, spform, spGender, spRank;
 
 
@@ -75,15 +73,19 @@ public class FindMoreDialog extends DialogFragment {
         spform = view.findViewById(R.id.spform);
         spRank = view.findViewById(R.id.spRank);
         spLevel = view.findViewById(R.id.spLevel);
-        tvForm = view.findViewById(R.id.tvForm);
-        tvExp = view.findViewById(R.id.tvExp);
-        tvLevel = view.findViewById(R.id.tvLevel);
-        tvRank = view.findViewById(R.id.tvRank);
-        tvCity = view.findViewById(R.id.tvCity);
-        tvGender = view.findViewById(R.id.tvGender);
+        tvExit = view.findViewById(R.id.tvExit);
+
+        tvExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+             Intent intent = new Intent(getContext(), LoadSearchSalaryDialog.class);
+             startActivity(intent);
+            }
+        });
 
         title = getArguments().getString("findkey");
         career = getArguments().getString("nganhnghe");
+        final String nameCat = getArguments().getString("nameCat");
 
         spinerAdress();
         spinerLevel();
@@ -92,93 +94,45 @@ public class FindMoreDialog extends DialogFragment {
         spinerForm();
         spinerRank();
 
-
-        tvForm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                spform.setVisibility(View.VISIBLE);
-                tvForm.setVisibility(View.GONE);
-            }
-        });
-
-
-        tvLevel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                spLevel.setVisibility(View.VISIBLE);
-                tvLevel.setVisibility(View.GONE);
-            }
-        });
-
-
-        tvCity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                spCity.setVisibility(View.VISIBLE);
-                tvCity.setVisibility(View.GONE);
-            }
-        });
-
-
-        tvExp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                spExperience.setVisibility(View.VISIBLE);
-                tvExp.setVisibility(View.GONE);
-            }
-        });
-
-
-        tvGender.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                spGender.setVisibility(View.VISIBLE);
-                tvGender.setVisibility(View.GONE);
-            }
-        });
-
-
-        tvRank.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                spRank.setVisibility(View.VISIBLE);
-                tvRank.setVisibility(View.GONE);
-            }
-        });
         edFindSalaryDiaLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getContext(), DetailDialogSearchSalary.class);
-                intent.putExtra("positionExpx", String.valueOf(positionExpx));
-                intent.putExtra("positionCityx", String.valueOf(postionCityx));
-                intent.putExtra("positionLevelx", String.valueOf(positionLevelx));
-                intent.putExtra("positionFormx", String.valueOf(positionFormx));
-                intent.putExtra("positionGenderx", String.valueOf(positionGenderx));
-                intent.putExtra("positionRankx", String.valueOf(positionRankx));
-                intent.putExtra("findkey", String.valueOf(title));
-                intent.putExtra("career", String.valueOf(career));
+
+                    Intent intent = new Intent(getContext(), DetailDialogSearchSalary.class);
+                    intent.putExtra("positionExpx", String.valueOf(positionExpx));
+                    intent.putExtra("positionCityx", String.valueOf(postionCityx));
+                    intent.putExtra("positionLevelx", String.valueOf(positionLevelx));
+                    intent.putExtra("positionFormx", String.valueOf(positionFormx));
+                    intent.putExtra("positionGenderx", String.valueOf(positionGenderx));
+                    intent.putExtra("positionRankx", String.valueOf(positionRankx));
+                    intent.putExtra("findkey", String.valueOf(title));
+                    intent.putExtra("career", String.valueOf(career));
 
 
-                intent.putExtra("positionExp", positionExp);
-                intent.putExtra("positionCity", nameCity);
-                intent.putExtra("positionLevel", positionLevel);
-                intent.putExtra("positionForm", positionForm);
-                intent.putExtra("positionGender", positionGender);
-                intent.putExtra("positionRank", positionRank);
-                intent.putExtra("career", career);
+
+                    intent.putExtra("positionExp", positionExp);
+                    intent.putExtra("positionCity", nameCity);
+                    intent.putExtra("positionLevel", positionLevel);
+                    intent.putExtra("positionForm", positionForm);
+                    intent.putExtra("positionGender", positionGender);
+                    intent.putExtra("positionRank", positionRank);
 
 
-                Log.d("a", (postionCityx) + "city");
-                Log.d("a", (positionLevelx) + "level");
-                Log.d("a", (positionFormx) + "HINH THUC");
-                Log.d("a", (positionExpx) + "KINH NGHIEM");
-                Log.d("a", (positionGenderx) + "GIOI TINH");
-                Log.d("a", (positionRankx) + "CAP BAC");
-                Log.d("a", (title) + "Caaaa");
-                startActivity(intent);
+                    Log.d("po", (postionCityx) + "city");
+                    Log.d("po", (career) + "nganh nghe");
+                    Log.d("po", (nameCat) + "ten nganh nghe");
+                    Log.d("po", (positionLevelx) + "level");
+                    Log.d("po", (positionFormx) + "HINH THUC");
+                    Log.d("po", (positionExpx) + "KINH NGHIEM");
+                    Log.d("po", (positionGenderx) + "GIOI TINH");
+                    Log.d("po", (positionRankx) + "CAP BAC");
+                    Log.d("po", (title) + "Caaaa");
+                    startActivity(intent);
+                }
 
-            }
+
+//            }
         });
 
 
@@ -191,7 +145,7 @@ public class FindMoreDialog extends DialogFragment {
         gender = new ArrayList<String>(Arrays.asList(genderArray));
 
         /* selected item will look like a spinner set from XML */
-        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, gender);
+        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_layout,R.id.tvSpiner, gender);
 
         spGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -211,8 +165,6 @@ public class FindMoreDialog extends DialogFragment {
 
             }
         });
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         spGender.setAdapter(spinnerArrayAdapter);
     }
 
@@ -221,12 +173,14 @@ public class FindMoreDialog extends DialogFragment {
         expArray = getResources().getStringArray(R.array.array_exp);
         exp = new ArrayList<String>();
         exp = new ArrayList<String>(Arrays.asList(expArray));
-        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, exp);
+        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getContext(),  R.layout.spinner_layout, R.id.tvSpiner, exp);
         spExperience.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 positionExp = spinnerArrayAdapter.getItem(i);
-
+                if (positionExp.equals("Chưa có kinh nghiệm")) {
+                    positionExpx = 0;
+                }
 
                 if (positionExp.equals("0 - 1 năm kinh nghiệm")) {
                     positionExpx = 1;
@@ -266,7 +220,7 @@ public class FindMoreDialog extends DialogFragment {
         capbac = new ArrayList<String>(Arrays.asList(capbacArray));
 
         /* selected item will look like a spinner set from XML */
-        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, capbac);
+        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getContext(),  R.layout.spinner_layout, R.id.tvSpiner, capbac);
 
         spRank.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -305,7 +259,6 @@ public class FindMoreDialog extends DialogFragment {
 
             }
         });
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spRank.setAdapter(spinnerArrayAdapter);
 
     }
@@ -315,26 +268,14 @@ public class FindMoreDialog extends DialogFragment {
         form = new ArrayList<String>();
         form = new ArrayList<String>(Arrays.asList(formArray));
 
-
-
-
         /* selected item will look like a spinner set from XML */
-        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, form) {
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-                return super.getView(position, convertView, parent);
-            }
-        };
+        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getContext(),  R.layout.spinner_layout, R.id.tvSpiner, form);
 
         spform.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 positionForm = spinnerArrayAdapter.getItem(i);
-                if (positionForm.equals("Không chọn")) {
-                    positionFormx = 0;
-                }
+
                 if (positionForm.equals("Toàn thời gian cố định")) {
                     positionFormx = 1;
                 }
@@ -362,8 +303,6 @@ public class FindMoreDialog extends DialogFragment {
 
             }
         });
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
 
         spform.setAdapter(spinnerArrayAdapter);
 
@@ -376,17 +315,14 @@ public class FindMoreDialog extends DialogFragment {
         level = new ArrayList<String>(Arrays.asList(levelArray));
 
         /* selected item will look like a spinner set from XML */
-        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, level);
+        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getContext(),  R.layout.spinner_layout, R.id.tvSpiner, level);
 
         spLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 positionLevel = spinnerArrayAdapter.getItem(i);
 
-                if (positionLevel.equals("Không chọn")) {
-                    positionLevelx = 0;
-                }
-                if (positionLevel.equals("Tất cả trình độ")) {
+                if (positionLevel.equals("Không yêu cầu")) {
                     positionLevelx = 1;
 
                 }
@@ -401,12 +337,8 @@ public class FindMoreDialog extends DialogFragment {
                     positionLevelx = 4;
                 }
 
-                if (positionLevel.equals("Trung cấp")) {
-                    positionLevelx = 5;
-                }
-
                 if (positionLevel.equals("Trung học")) {
-                    positionLevelx = 6;
+                    positionLevelx = 5;
                 }
 
                 if (positionLevel.equals("Khác")) {
@@ -419,11 +351,18 @@ public class FindMoreDialog extends DialogFragment {
 
             }
         });
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         spLevel.setAdapter(spinnerArrayAdapter);
     }
 
     private void spinerAdress() {
+
+        City city1 = new City();
+        city1.setNameCity("Chọn nơi làm việc");
+        city1.setIdCity("0");
+        cityBeansList.add(city1);
+
+
         City city = new City();
         city.setIdCity("0");
         city.setNameCity("Toàn Quốc");
@@ -431,7 +370,7 @@ public class FindMoreDialog extends DialogFragment {
         cityBeansList.add(city);
         cityBeansList.addAll(getCity("adress.json"));
 
-        ArrayAdapter<City> adapter = new ArrayAdapter<City>(getContext(), android.R.layout.simple_spinner_item, cityBeansList);
+        ArrayAdapter<City> adapter = new ArrayAdapter<City>(getContext(),  R.layout.spinner_layout, R.id.tvSpiner, cityBeansList);
         spCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -446,7 +385,6 @@ public class FindMoreDialog extends DialogFragment {
             }
         });
         spCity.setAdapter(adapter);
-        spCity.setPrompt("aaaaaaaaaaa");
     }
 
 

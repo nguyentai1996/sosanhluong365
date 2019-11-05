@@ -1,10 +1,10 @@
 package com.example.timviec365.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -19,14 +19,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timviec365.R;
-import com.example.timviec365.adapter.DataCompanyAdapter;
 import com.example.timviec365.adapter.DataCompanyNumberOneAdapter;
 import com.example.timviec365.config.JobRetrofit;
 import com.example.timviec365.fragmentDialog.FindMoreDialog;
+import com.example.timviec365.fragmentDialog.LoadSearchSalaryDialog;
 import com.example.timviec365.model.Career;
-import com.example.timviec365.model.DataCompany;
 import com.example.timviec365.model.DataCompanyNumberOne;
-import com.example.timviec365.model.DataNews;
 import com.example.timviec365.model.DataSearchSalary;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -61,13 +59,14 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
     private Spinner spCareer;
 
     private Button edFindSalary;
-    private AutoCompleteTextView edNameJob, edLevel, edExperience, edform, edGender, edRank;
-    private TextView career,tvSalarySearch, tvCareer, tvNameJob, tvAdress, tvLevel, tvExperience, tvform, tvGender, tvRank;
+    private AutoCompleteTextView edNameJob, edLevel, edExperience, edform, edGender, edRank, edCareerSearchSalary;
+    private TextView tvSalaryDown,tvSalaryDown2,career, tvSalarySearch, tvCareer, tvNameJob, tvAdress, tvLevel, tvExperience, tvform, tvGender, tvRank;
     private ImageView imgMore;
 
-    private String getNganhnghe= "",City = "",Form = "",Level= "",Gender= "",Rank= "",Exp = "";
+    private int postionSpinner = -1;
+    private String getNganhnghe = "", City = "", Form = "", Level = "", Gender = "", Rank = "", Exp = "";
     private BarChart mChart;
-    private String postionCareer, nameCareer= "", findkey, nganhnghe, positionCityx, positionFormx, positionLevelx, positionExpx, positionGenderx, positionRankx;
+    private String nameCat = "", nameCity = "", postionCareer, nameCareer = "", findkey, ponganhnghe, positionCityx, positionFormx = "", positionLevelx = "", positionExpx = "", positionGenderx = "", positionRankx = "";
     private String dataChart1, dataChart2, dataChart3;
 
 
@@ -80,27 +79,30 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
         getInten();
         setTitel();
         spinerCareer();
+
         demoRetro();
         getDataCompanyNumberOne();
 
-        career.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                career.setVisibility(View.GONE);
-                spCareer.setVisibility(View.VISIBLE);
-            }
-        });
+
         mChart.setFitBars(true);
 
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (findkey.isEmpty()) {
+                for (int i = 0; i < careerArrayList.size(); i++) {
+
+                    Career career = careerArrayList.get(i);
+                    if (career.getNameCat().toLowerCase().equalsIgnoreCase(edCareerSearchSalary.getText().toString().trim().toLowerCase())) {
+                        postionSpinner = i;
+                    }
+                }
+                if (findkey.equals("")) {
                     Toast.makeText(DetailDialogSearchSalary.this, "Vui lòng nhập công việc", Toast.LENGTH_SHORT).show();
-                } else if (nameCareer.equals("Không chọn")) {
-                    Toast.makeText(DetailDialogSearchSalary.this, "Vui lòng chọn ngành nghề", Toast.LENGTH_SHORT).show();
-                }else {
-                    showAlertDialog(edNameJob.getText().toString().trim(), postionCareer);
+                } else if (postionSpinner == -1) {
+                    Toast.makeText(DetailDialogSearchSalary.this, "Ngành nghề bạn nhập vào chưa đúng", Toast.LENGTH_SHORT).show();
+                } else {
+                    showAlertDialog(edNameJob.getText().toString().trim(), careerArrayList.get(postionSpinner).getIdCat(), careerArrayList.get(postionSpinner).getNameCat());
+                    Log.d("yeah", careerArrayList.get(postionSpinner).getIdCat());
                 }
             }
         });
@@ -112,15 +114,35 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
             public void onClick(View view) {
                 if (findkey.isEmpty()) {
                     Toast.makeText(DetailDialogSearchSalary.this, "Vui lòng nhập công việc", Toast.LENGTH_SHORT).show();
-                } else if (nameCareer.equals("Không chọn")) {
-                    Toast.makeText(DetailDialogSearchSalary.this, "Vui lòng chọn ngành nghề", Toast.LENGTH_SHORT).show();
+                }
+                for (int i = 0; i < careerArrayList.size(); i++) {
+
+                    Career career = careerArrayList.get(i);
+                    if (career.getNameCat().toLowerCase().equalsIgnoreCase(edCareerSearchSalary.getText().toString().trim().toLowerCase())) {
+                        postionSpinner = i;
+                    }
+                }
+                if (findkey.equals("")) {
+                    Toast.makeText(DetailDialogSearchSalary.this, "Vui lòng nhập công việc", Toast.LENGTH_SHORT).show();
+                } else if (postionSpinner == -1) {
+                    Toast.makeText(DetailDialogSearchSalary.this, "Ngành nghề bạn nhập vào chưa đúng", Toast.LENGTH_SHORT).show();
                 } else {
-                    demoRetroGetDataSearch();
+
+                    Intent intent = new Intent(DetailDialogSearchSalary.this, LoadSearchSalaryDialog.class);
+                    intent.putExtra("key", findkey);
+                    intent.putExtra("career", careerArrayList.get(postionSpinner).getIdCat());
+                    intent.putExtra("nameCat", careerArrayList.get(postionSpinner).getNameCat());
+
+                    Log.d("abc", String.valueOf(postionSpinner));
+                    Log.d("abc", careerArrayList.get(postionSpinner).getNameCat());
+                    startActivity(intent);
+
+//                    demoRetroGetDataSearch();
                     tvNameJob.setText(findkey);
                     tvAdress.setText("KHÔNG CHỌN");
                     tvLevel.setText("KHÔNG CHỌN");
                     tvExperience.setText("KHÔNG CHỌN");
-                    tvCareer.setText(nganhnghe);
+                    tvCareer.setText(ponganhnghe);
                     tvGender.setText("KHÔNG CHỌN");
                     tvRank.setText("KHÔNG CHỌN");
                     tvform.setText("KHÔNG CHỌN");
@@ -135,7 +157,7 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
         tvAdress.setText(City);
         tvLevel.setText(Level);
         tvExperience.setText(Exp);
-        tvCareer.setText(nganhnghe);
+        tvCareer.setText(nameCat);
         tvGender.setText(Gender);
         tvRank.setText(Rank);
         tvform.setText(Form);
@@ -143,37 +165,35 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
     }
 
     private void getInten() {
-        findkey = getIntent().getStringExtra("findkey");
-        nganhnghe = getIntent().getStringExtra("career");
-        positionCityx = getIntent().getStringExtra("positionCityx");
-        positionFormx = getIntent().getStringExtra("positionFormx");
-        positionExpx = getIntent().getStringExtra("positionExpx");
-        positionLevelx = getIntent().getStringExtra("positionLevelx");
-        positionGenderx = getIntent().getStringExtra("positionGenderx");
-        positionRankx = getIntent().getStringExtra("positionRankx");
 
-        City = getIntent().getStringExtra("positionCity");
+        findkey = getIntent().getStringExtra("findkey");
+        ponganhnghe = getIntent().getStringExtra("career");
+        positionCityx = getIntent().getStringExtra("positionCityx");
+        nameCat = getIntent().getStringExtra("nameCat");
+        Rank = getIntent().getStringExtra("positionRank");
+        Gender = getIntent().getStringExtra("positionGender");
         Form = getIntent().getStringExtra("positionForm");
+        City = getIntent().getStringExtra("positionCity");
         Exp = getIntent().getStringExtra("positionExp");
         Level = getIntent().getStringExtra("positionLevel");
-        Gender = getIntent().getStringExtra("positionGender");
-        Rank = getIntent().getStringExtra("positionRank");
 
 
     }
 
+
     private void init() {
         mChart = (BarChart) findViewById(R.id.combinedChart);
-        career = findViewById(R.id.nganhnghe);
         edFindSalary = findViewById(R.id.edFindSalary);
         imgMore = findViewById(R.id.imgMore);
+        tvSalaryDown = findViewById(R.id.tvSalaryDown);
+        tvSalaryDown2 = findViewById(R.id.tvSalaryDown2);
         edNameJob = findViewById(R.id.edNameJobSearchSalary);
         tvAdress = findViewById(R.id.tvAdress);
         tvSalarySearch = findViewById(R.id.tvSalarySearch);
         tvExperience = findViewById(R.id.tvExprience);
         tvform = findViewById(R.id.tvForm);
         tvCareer = findViewById(R.id.tvCareer);
-        spCareer = findViewById(R.id.SpCareerSearchSalary);
+        edCareerSearchSalary = findViewById(R.id.edCareerSearchSalary);
         tvRank = findViewById(R.id.tvRank);
         tvLevel = findViewById(R.id.tvLevel);
         tvGender = findViewById(R.id.tvGender);
@@ -190,9 +210,11 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
         rcvCompany.setAdapter(adapterRCV);
     }
 
-    private void showAlertDialog(String key, String postionCareer) {
+    private void showAlertDialog(String key, String postionCareer, String nameCat) {
+        postionCareer = careerArrayList.get(postionSpinner).getIdCat();
+        nameCat = careerArrayList.get(postionSpinner).getNameCat();
         FragmentManager fm = getSupportFragmentManager();
-        FindMoreDialog alertDialog = FindMoreDialog.newInstance(key,postionCareer);
+        FindMoreDialog alertDialog = FindMoreDialog.newInstance(key, postionCareer, nameCat);
         alertDialog.show(fm, "fragment_alert");
     }
 
@@ -216,6 +238,9 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
         BarData barData = new BarData(set);
         mChart.setData(barData);
         mChart.invalidate();
+        mChart.setTouchEnabled(false);
+        mChart.setDragEnabled(false);
+        mChart.setPinchZoom(false);
         mChart.setFitBars(true);
         mChart.animateY(500);
 
@@ -223,17 +248,25 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
     }
 
     public void demoRetro() {
+        positionExpx = getIntent().getStringExtra("positionExpx");
+        positionCityx = getIntent().getStringExtra("positionCityx");
+        positionLevelx = getIntent().getStringExtra("positionLevelx");
+        positionFormx = getIntent().getStringExtra("positionFormx");
+        positionGenderx = getIntent().getStringExtra("positionGenderx");
+        positionRankx = getIntent().getStringExtra("positionRankx");
+        findkey = getIntent().getStringExtra("findkey");
+        nameCat = getIntent().getStringExtra("nameCat");
 
         Map<String, String> mapm = new HashMap<>();
 
         mapm.put("findkey", findkey);
-        mapm.put("bangcap", positionLevelx);
-        mapm.put("nganhnghe", nganhnghe);
-        mapm.put("kinhnghiem", positionExpx);
-        mapm.put("hinhthuclamviec", positionFormx);
-        mapm.put("gioitinh", positionGenderx);
-        mapm.put("capbac", positionRankx);
+        mapm.put("nganhnghe", ponganhnghe);
         mapm.put("noilamviec", positionCityx);
+        mapm.put("hinhthuclamviec", positionFormx.equals("0") ? "" : positionFormx);
+        mapm.put("kinhnghiem", positionExpx.equals("0") ? "" : positionExpx);
+        mapm.put("bangcap", positionLevelx.equals("0") ? "" : positionLevelx);
+        mapm.put("gioitinh", positionGenderx.equals("0") ? "" : positionGenderx);
+        mapm.put("capbac", positionRankx.equals("0") ? "" : positionRankx);
 
 
         JobRetrofit.getInstance().getDataSearchSalary(mapm).enqueue(new Callback<DataSearchSalary>() {
@@ -241,28 +274,19 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
             public void onResponse(Call<DataSearchSalary> call, Response<DataSearchSalary> response) {
                 if (response.code() == 200 && response.body() != null) {
                     DataSearchSalary dataSearchSalary = response.body();
-                    if (findkey == null) {
-                        Toast.makeText(DetailDialogSearchSalary.this, "không có dữ liệu vui lòng nhập lại", Toast.LENGTH_SHORT).show();
-                    }
-                    if (dataSearchSalary.getData() == null) {
-                        Toast.makeText(DetailDialogSearchSalary.this, "Không có dữ liệu", Toast.LENGTH_SHORT).show();
-                    } else {
 
-                        dataSearchSalary.getData().get(0).getY();
-                        tvSalarySearch.setText(dataSearchSalary.getData().get(1).getIndexLabel() + "\n" + "Nghìn");
-                        dataChart1 = String.valueOf(dataSearchSalary.getData().get(0).getY());
-                        dataChart2 = String.valueOf(dataSearchSalary.getData().get(1).getY());
-                        dataChart3 = String.valueOf(dataSearchSalary.getData().get(2).getY());
 
-                        Log.d("azz", findkey);
-                        Log.d("azz", nganhnghe);
-                        Log.d("azz", positionCityx);
-                        Log.d("azz", positionExpx);
-                        Log.d("azz", positionFormx);
-                        Log.d("azz", positionGenderx);
-                        Log.d("azz", positionRankx);
-                        setDataBarChart();
-                    }
+                    dataSearchSalary.getData().get(0).getY();
+                    tvSalarySearch.setText(dataSearchSalary.getData().get(1).getIndexLabel() + "\n" + "Nghìn");
+                    tvSalaryDown.setText(dataSearchSalary.getData().get(1).getIndexLabel() + " Nghìn");
+                    tvSalaryDown2.setText(dataSearchSalary.getData().get(1).getIndexLabel()  + " Nghìn");
+                    dataChart1 = String.valueOf(dataSearchSalary.getData().get(0).getY());
+                    dataChart2 = String.valueOf(dataSearchSalary.getData().get(1).getY());
+                    dataChart3 = String.valueOf(dataSearchSalary.getData().get(2).getY());
+
+
+                    setDataBarChart();
+
                 } else {
                     Toast.makeText(DetailDialogSearchSalary.this, "Không có dữ liệu", Toast.LENGTH_SHORT).show();
                 }
@@ -275,72 +299,6 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
         });
     }
 
-    public void demoRetroGetDataSearch() {
-
-
-        String findkey = edNameJob.getText().toString();
-        String nganhnghe = postionCareer;
-
-
-        Map<String, String> mapm = new HashMap<>();
-
-        mapm.put("findkey", findkey);
-        mapm.put("nganhnghe", nganhnghe);
-
-
-        JobRetrofit.getInstance().getDataSearchSalary(mapm).enqueue(new Callback<DataSearchSalary>() {
-            @Override
-            public void onResponse(Call<DataSearchSalary> call, Response<DataSearchSalary> response) {
-                if (response.code() == 200 && response.body() != null) {
-                    DataSearchSalary dataSearchSalary = response.body();
-
-                    if (dataSearchSalary.getData() == null) {
-                        Toast.makeText(DetailDialogSearchSalary.this, "Không có dữ liệu", Toast.LENGTH_SHORT).show();
-                    } else {
-                        dataSearchSalary.getData().get(0).getY();
-                        tvSalarySearch.setText(dataSearchSalary.getData().get(1).getIndexLabel() + "\n" + "Nghìn");
-                        dataChart1 = String.valueOf(dataSearchSalary.getData().get(0).getY());
-                        dataChart2 = String.valueOf(dataSearchSalary.getData().get(1).getY());
-                        dataChart3 = String.valueOf(dataSearchSalary.getData().get(2).getY());
-
-                        setDataBarChart();
-                    }
-                } else {
-                    Toast.makeText(DetailDialogSearchSalary.this, "Không có dữ liệu", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<DataSearchSalary> call, Throwable t) {
-                Log.e("err", t.getMessage());
-            }
-        });
-    }
-
-    public ArrayList<String> getNameJob(String filename1) {
-        JSONObject jsonArray = null;
-
-        ArrayList<String> cList = new ArrayList<String>();
-        try {
-            InputStream inputStream = getResources().getAssets().open(filename1);
-            int size = inputStream.available();
-            byte[] data = new byte[size];
-            inputStream.read(data);
-            inputStream.close();
-            String json = new String(data, "UTF-8");
-            jsonArray = new JSONObject(json);
-            if (jsonArray != null) {
-                for (int i = 0; i < 100; i++) {
-                    cList.add(jsonArray.getJSONArray("db_category").getJSONObject(i).getString("cat_name"));
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return cList;
-    }
 
     public ArrayList<Career> getDataCeareer(String filename2) {
         JSONObject jsonArray = null;
@@ -369,10 +327,6 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
     }
 
     private void spinerCareer() {
-        Career career1 = new Career();
-        career1.setNameCat("Không chọn");
-        career1.setIdCat("-1");
-        careerArrayList.add(career1);
 
         Career career = new Career();
         career.setNameCat("Không yêu cầu");
@@ -380,42 +334,30 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
         careerArrayList.add(career);
 
         careerArrayList.addAll(getDataCeareer("adress.json"));
-        ArrayAdapter<Career> adapter = new ArrayAdapter<Career>(DetailDialogSearchSalary.this, R.layout.spinner_layout,R.id.tvSpiner, careerArrayList);
-        spCareer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                postionCareer = careerArrayList.get(i).getIdCat();
-                nameCareer = careerArrayList.get(i).getNameCat();
-            }
+        ArrayAdapter<Career> adapter = new ArrayAdapter<Career>(DetailDialogSearchSalary.this, R.layout.spinner_layout, R.id.tvSpiner, careerArrayList);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-        spCareer.setAdapter(adapter);
+        edCareerSearchSalary.setAdapter(adapter);
     }
-
 
 
     public void getDataCompanyNumberOne() {
 
         Map<String, String> mapm = new HashMap<>();
 
-        mapm.put("tinhthanh", positionCityx );
-        mapm.put("nganhnghechon", nganhnghe);
+        mapm.put("tinhthanh", positionCityx);
+        mapm.put("nganhnghechon", ponganhnghe);
         mapm.put("findkey", findkey);
 
         JobRetrofit.getInstance().getDataCompanyNumberOne(mapm).enqueue(new Callback<List<DataCompanyNumberOne>>() {
             @Override
             public void onResponse(Call<List<DataCompanyNumberOne>> call, Response<List<DataCompanyNumberOne>> response) {
                 if (response.code() == 200 && response.body() != null) {
+
+                    adapterRCV.clearList();
                     adapterRCV.updateData(response.body());
                     adapterRCV.notifyDataSetChanged();
 
 
-                } else {
-                    Toast.makeText(DetailDialogSearchSalary.this, "Không có dữ liệu", Toast.LENGTH_SHORT).show();
                 }
             }
 

@@ -1,17 +1,17 @@
 package com.example.timviec365.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,15 +24,23 @@ import com.example.timviec365.R;
 import com.example.timviec365.adapter.DataCompanyNumberOneAdapter;
 import com.example.timviec365.config.JobRetrofit;
 import com.example.timviec365.fragmentDialog.FindMoreDialog;
+import com.example.timviec365.fragmentDialog.LoadSearchSalaryDialog;
 import com.example.timviec365.model.Career;
 import com.example.timviec365.model.DataCompanyNumberOne;
 import com.example.timviec365.model.DataSearchSalary;
-import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.CombinedChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.CombinedData;
+import com.github.mikephil.charting.data.DataSet;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,46 +56,54 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DetailSearchSalaryActivity extends AppCompatActivity {
+
+public class DetailSearchSalaryActivity extends AppCompatActivity  implements OnChartValueSelectedListener {
 
     private List<DataCompanyNumberOne> dataCompanyNumberOneList;
     private LinearLayoutManager linearLayoutManager;
     private LinearLayout lnlayoutFull;
+    private  int postionSpinner = -1;
     private RecyclerView rcvCompany;
     private DataCompanyNumberOneAdapter adapterRCV;
     private ArrayList<Career> careerArrayList = new ArrayList<>();
-    private Spinner spCareer;
+    private AutoCompleteTextView edCareerSearchSalary;
 
     private Button edFindSalary;
     private AutoCompleteTextView edNameJob, edLevel, edExperience, edform, edGender, edRank;
-    private TextView nganhnghe, tvSalarySearch, tvCareer, tvNameJob, tvAdress, tvLevel, tvExperience, tvform, tvGender, tvRank;
+    private TextView nganhnghe,tvSalaryDown,tvSalaryDown2, tvSalarySearch, tvCareer, tvNameJob, tvAdress, tvLevel, tvExperience, tvform, tvGender, tvRank;
     private ImageView imgMore;
 
-    private BarChart mChart;
-    private String postionCareer = "", postionCaree = "", career = "", nameCareer = "", nameCat = "", nganhnghechon = "", key = "";
-    private String dataChart1, findkey = "", dataChart2, dataChart3;
+    private CombinedChart mChart;
+    private String nameCity = "", findkey = "", postionCareer = "", postionCaree = "", career = "", nameCareer = "", nameCat = "", nganhnghechon = "", key = "";
+    private float dataChart1, dataChart2, dataChart3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
+
         setContentView(R.layout.activity_detail_search_salary);
 
 
-        mChart = (BarChart) findViewById(R.id.combinedChart);
-
         edFindSalary = findViewById(R.id.edFindSalary);
-        lnlayoutFull = findViewById(R.id.lnlayoutFull);
-        nganhnghe = findViewById(R.id.nganhnghe);
         imgMore = findViewById(R.id.imgMore);
+        tvSalaryDown = findViewById(R.id.tvSalaryDown);
+        tvSalaryDown2 = findViewById(R.id.tvSalaryDown2);
         edNameJob = findViewById(R.id.edNameJobSearchSalary);
         tvAdress = findViewById(R.id.tvAdress);
         tvSalarySearch = findViewById(R.id.tvSalarySearch);
         tvExperience = findViewById(R.id.tvExprience);
         tvform = findViewById(R.id.tvForm);
-        spCareer = findViewById(R.id.SpCareerSearchSalary);
+        edCareerSearchSalary = findViewById(R.id.edCareerSearchSalary);
         tvRank = findViewById(R.id.tvRank);
         tvLevel = findViewById(R.id.tvLevel);
         tvGender = findViewById(R.id.tvGender);
+
         tvCareer = findViewById(R.id.Job);
         tvNameJob = findViewById(R.id.tvNamejob);
 
@@ -102,11 +118,23 @@ public class DetailSearchSalaryActivity extends AppCompatActivity {
         rcvCompany.setAdapter(adapterRCV);
 
 
+        mChart = (CombinedChart) findViewById(R.id.combinedChart);
+        mChart.getDescription().setEnabled(false);
+        mChart.setBackgroundColor(Color.WHITE);
+        mChart.setDrawGridBackground(false);
+        mChart.setDrawBarShadow(false);
+        mChart.setHighlightFullBarEnabled(false);
+        mChart.setOnChartValueSelectedListener(DetailSearchSalaryActivity.this);
+
+       setDataLine();
+
+
         init();
         addData();
         getDataCompanyNumberOne();
 
         postionCareer = getIntent().getStringExtra("career");
+        nameCat = getIntent().getStringExtra("nameCat");
         edNameJob.setText(findkey);
 
 
@@ -114,48 +142,156 @@ public class DetailSearchSalaryActivity extends AppCompatActivity {
         spinerCareer();
         demoRetro();
 
-        nganhnghe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                nganhnghe.setVisibility(View.GONE);
-                spCareer.setVisibility(View.VISIBLE);
-            }
-        });
 
-        mChart.setFitBars(true);
 
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showAlertDialog(edNameJob.getText().toString().trim(), postionCareer);
+                String keykey = edNameJob.getText().toString().trim();
+                for (int i = 0; i < careerArrayList.size(); i++) {
+
+                    Career career = careerArrayList.get(i);
+                    if (career.getNameCat().toLowerCase().equalsIgnoreCase(edCareerSearchSalary.getText().toString().trim().toLowerCase())) {
+                        postionSpinner = i;
+                    }
+                }
+                if (keykey.equals("")) {
+                    Toast.makeText(DetailSearchSalaryActivity.this, "Vui lòng nhập công việc", Toast.LENGTH_SHORT).show();
+                }
+                else if (postionSpinner == -1) {
+                    Toast.makeText(DetailSearchSalaryActivity.this, "Ngành nghề bạn nhập vào chưa đúng", Toast.LENGTH_SHORT).show();
+                }else {
+                    showAlertDialog(edNameJob.getText().toString().trim(), careerArrayList.get(postionSpinner).getIdCat(), careerArrayList.get(postionSpinner).getNameCat());
+                Log.d("yeah",careerArrayList.get(postionSpinner).getIdCat());
+                }
             }
         });
+
 
         edFindSalary.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                if (findkey.isEmpty()) {
+                key = edNameJob.getText().toString().trim();
+                for (int i = 0; i < careerArrayList.size(); i++) {
+
+                    Career career = careerArrayList.get(i);
+                    if (career.getNameCat().toLowerCase().equalsIgnoreCase(edCareerSearchSalary.getText().toString().trim().toLowerCase())) {
+                        postionSpinner = i;
+                    }
+                }
+                if (key.equals("")) {
                     Toast.makeText(DetailSearchSalaryActivity.this, "Vui lòng nhập công việc", Toast.LENGTH_SHORT).show();
-                } else if (nameCareer.equals("Không chọn")) {
-                    Toast.makeText(DetailSearchSalaryActivity.this, "Vui lòng chọn ngành nghề", Toast.LENGTH_SHORT).show();
+                }
+                else if (postionSpinner == -1) {
+                    Toast.makeText(DetailSearchSalaryActivity.this, "Ngành nghề bạn nhập vào chưa đúng", Toast.LENGTH_SHORT).show();
                 } else {
-//                    TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, -150);
-//                    translateAnimation.setDuration(1000);
-//                    translateAnimation.setFillAfter(true);
-//                    lnlayoutFull.startAnimation(translateAnimation);
-                    demoRetroGetDataSearch();
-                    getDataCompanyNumberOne2();
-                    tvNameJob.setText(edNameJob.getText().toString().trim());
-                    tvCareer.setText(postionCaree);
-                    Log.d("ad", postionCaree);
+
+                    Intent intent = new Intent(DetailSearchSalaryActivity.this, LoadSearchSalaryDialog.class);
+                    intent.putExtra("key", key);
+                    intent.putExtra("career", careerArrayList.get(postionSpinner).getIdCat());
+                    intent.putExtra("nameCat", careerArrayList.get(postionSpinner).getNameCat());
+
+                    Log.d("abc", String.valueOf(postionSpinner));
+                    Log.d("abc", careerArrayList.get(postionSpinner).getNameCat());
+                    startActivity(intent);
+
+//                    demoRetroGetDataSearch();
+//                    getDataCompanyNumberOne2();
+//                    tvNameJob.setText(edNameJob.getText().toString().trim());
+//                    tvCareer.setText(careerArrayList.get(postionSpinner).getNameCat());
+//                    Log.d("ad", postionCaree);
+
+
+
                 }
             }
         });
 
     }
 
+
+
+
+    private void setDataLine() {
+        YAxis rightAxis = mChart.getAxisRight();
+        rightAxis.setDrawGridLines(false);
+        rightAxis.setAxisMinimum(0f);
+
+        YAxis leftAxis = mChart.getAxisLeft();
+        leftAxis.setDrawGridLines(false);
+        leftAxis.setAxisMinimum(0f);
+
+        final List<String> xLabel = new ArrayList<>();
+        xLabel.add("0");
+        xLabel.add("Thấp nhất");
+        xLabel.add("");
+        xLabel.add("Trung bình");
+        xLabel.add("");
+        xLabel.add("Cao nhất");
+        xLabel.add("0");
+
+
+        XAxis xAxis = mChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setAxisMinimum(0f);
+        xAxis.setGranularity(1f);
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return xLabel.get((int) value % xLabel.size());
+            }
+        });
+
+        CombinedData data = new CombinedData();
+        LineData lineDatas = new LineData();
+        lineDatas.addDataSet((ILineDataSet) dataChart());
+
+        data.setData(lineDatas);
+
+        xAxis.setAxisMaximum(data.getXMax() + 1f);
+
+        mChart.setData(data);
+        mChart.invalidate();
+
+    }
+
+    private DataSet dataChart() {
+
+        LineData d = new LineData();
+
+
+        ArrayList<Entry> entries = new ArrayList<Entry>();
+
+
+
+        entries.add(new Entry(1, (float) dataChart1));
+        entries.add(new Entry(3, dataChart2));
+        entries.add(new Entry(5, dataChart3));
+
+
+        LineDataSet set = new LineDataSet(entries, "Doanh số theo tháng");
+        set.setColor(Color.GREEN);
+        set.setLineWidth(5f);
+        set.setCircleColor(Color.GREEN);
+        set.setCircleRadius(5f);
+        set.setFillColor(Color.GREEN);
+        set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        set.setDrawValues(true);
+        set.setValueTextSize(20f);
+        set.setValueTextColor(Color.GREEN);
+        mChart.setTouchEnabled(false);
+        mChart.setDragEnabled(false);
+        mChart.setPinchZoom(false);
+
+        set.setAxisDependency(YAxis.AxisDependency.LEFT);
+        d.addDataSet(set);
+        return set;
+    }
+
+
     private void addData() {
+
         nameCat = getIntent().getStringExtra("nameCat");
         career = getIntent().getStringExtra("career");
         findkey = getIntent().getStringExtra("key");
@@ -173,48 +309,16 @@ public class DetailSearchSalaryActivity extends AppCompatActivity {
 
     }
 
-    private void showAlertDialog(String key, String postionCareer) {
+    private void showAlertDialog(String key, String postionCareer, String nameCat) {
+        postionCareer = careerArrayList.get(postionSpinner).getIdCat();
+        nameCat = careerArrayList.get(postionSpinner).getNameCat();
         FragmentManager fm = getSupportFragmentManager();
-        FindMoreDialog alertDialog = FindMoreDialog.newInstance(key, postionCareer);
+        FindMoreDialog alertDialog = FindMoreDialog.newInstance(key, postionCareer, nameCat);
         alertDialog.show(fm, "fragment_alert");
     }
 
 
-    private void setDataBarChart() {
-        ArrayList<BarEntry> yVals = new ArrayList<>();
 
-        yVals.add(new BarEntry(0, Float.parseFloat(dataChart1)));
-        yVals.add(new BarEntry(1, Float.parseFloat(dataChart2)));
-        yVals.add(new BarEntry(2, Float.parseFloat(dataChart3)));
-
-        mChart.getDescription().setEnabled(false);
-        BarDataSet set = new BarDataSet(yVals, "Triệu VND");
-        set.setColor(Color.YELLOW);
-        final String[] exp = new String[]{"Thấp nhất", "Trung bình", "Cao nhất"};
-
-
-        IndexAxisValueFormatter formatter = new IndexAxisValueFormatter(exp);
-
-        set.setDrawValues(true);
-        XAxis xAxis = mChart.getXAxis();
-        xAxis.setValueFormatter(formatter);
-        xAxis.setDrawGridLines(false);
-
-
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        BarData barData = new BarData(set);
-        mChart.setData(barData);
-        barData.setBarWidth(0.5f);
-        xAxis.setCenterAxisLabels(false);
-        mChart.getRendererXAxis().getPaintAxisLabels().setTextAlign(Paint.Align.LEFT);
-//        XLabels xl = chart.getXLabels();
-//        xl.setCenterXLabelText(true);
-        mChart.invalidate();
-        mChart.setFitBars(true);
-
-
-
-    }
 
     public void demoRetro() {
 
@@ -236,16 +340,16 @@ public class DetailSearchSalaryActivity extends AppCompatActivity {
                     if (dataSearchSalary.getData() == null) {
                         Toast.makeText(DetailSearchSalaryActivity.this, "Không có dữ liệu", Toast.LENGTH_SHORT).show();
                     } else {
-                        if (findkey.equals("")) {
-                            Toast.makeText(DetailSearchSalaryActivity.this, "null", Toast.LENGTH_SHORT).show();
-                        }
                         dataSearchSalary.getData().get(0).getY();
                         tvSalarySearch.setText(dataSearchSalary.getData().get(1).getIndexLabel() + "\n" + "Nghìn");
-                        dataChart1 = String.valueOf(dataSearchSalary.getData().get(0).getY());
-                        dataChart2 = String.valueOf(dataSearchSalary.getData().get(1).getY());
-                        dataChart3 = String.valueOf(dataSearchSalary.getData().get(2).getY());
+                        tvSalaryDown.setText(String.valueOf(dataSearchSalary.getData().get(1).getIndexLabel()) );
+                        tvSalaryDown2.setText(String.valueOf(dataSearchSalary.getData().get(1).getIndexLabel()) );
+                        dataChart1 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(0).getY()));
+                        dataChart2 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(1).getY()));
+                        dataChart3 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(2).getY()));
 
-                        setDataBarChart();
+                        dataChart();
+                        setDataLine();
                     }
                 } else {
                     Toast.makeText(DetailSearchSalaryActivity.this, "Không có dữ liệu", Toast.LENGTH_SHORT).show();
@@ -280,6 +384,7 @@ public class DetailSearchSalaryActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<DataCompanyNumberOne>> call, Response<List<DataCompanyNumberOne>> response) {
                 if (response.code() == 200 && response.body() != null) {
+                    adapterRCV.clearList();
                     adapterRCV.updateData(response.body());
                     adapterRCV.notifyDataSetChanged();
 
@@ -299,7 +404,7 @@ public class DetailSearchSalaryActivity extends AppCompatActivity {
     public void getDataCompanyNumberOne2() {
 
         String fikey = edNameJob.getText().toString().trim();
-        String nganhnghe = postionCaree;
+        String nganhnghe = careerArrayList.get(postionSpinner).getIdCat();
 
         Map<String, String> mapm = new HashMap<>();
 
@@ -313,6 +418,7 @@ public class DetailSearchSalaryActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<DataCompanyNumberOne>> call, Response<List<DataCompanyNumberOne>> response) {
                 if (response.code() == 200 && response.body() != null) {
+                    adapterRCV.clearList();
                     adapterRCV.updateData(response.body());
                     adapterRCV.notifyDataSetChanged();
 
@@ -395,28 +501,14 @@ public class DetailSearchSalaryActivity extends AppCompatActivity {
         careerArrayList.addAll(getDataCeareer("adress.json"));
         ArrayAdapter<Career> adapter = new ArrayAdapter<Career>(DetailSearchSalaryActivity.this, R.layout.spinner_layout, R.id.tvSpiner, careerArrayList);
 
-
-        spCareer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                postionCaree = careerArrayList.get(i).getIdCat();
-                nameCareer = careerArrayList.get(i).getNameCat();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-        spCareer.setAdapter(adapter);
-        spCareer.setSelection(2);
+        edCareerSearchSalary.setAdapter(adapter);
 
     }
 
 
     public void demoRetroGetDataSearch() {
         final String findkey = edNameJob.getText().toString();
-        String nganhnghe = postionCaree;
+        String nganhnghe = careerArrayList.get(postionSpinner).getIdCat();
 
         Map<String, String> mapm = new HashMap<>();
 
@@ -438,12 +530,15 @@ public class DetailSearchSalaryActivity extends AppCompatActivity {
                     } else {
 
                         dataSearchSalary.getData().get(0).getY();
-                        tvSalarySearch.setText(dataSearchSalary.getData().get(1).getIndexLabel() + "\n" + "Nghìn");
-                        dataChart1 = String.valueOf(dataSearchSalary.getData().get(0).getY());
-                        dataChart2 = String.valueOf(dataSearchSalary.getData().get(1).getY());
-                        dataChart3 = String.valueOf(dataSearchSalary.getData().get(2).getY());
+                        tvSalarySearch.setText(dataSearchSalary.getData().get(1).getIndexLabel() + "Nghìn");
+                        tvSalaryDown.setText(dataSearchSalary.getData().get(1).getIndexLabel()  + " Nghìn");
+                        tvSalaryDown2.setText(dataSearchSalary.getData().get(1).getIndexLabel()  + " Nghìn");
+                        dataChart1 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(0).getY()));
+                        dataChart2 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(1).getY()));
+                        dataChart3 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(2).getY()));
 
-                        setDataBarChart();
+                        dataChart();
+                        setDataLine();
                     }
                 } else {
                     Toast.makeText(DetailSearchSalaryActivity.this, "Không có dữ liệu", Toast.LENGTH_SHORT).show();
@@ -457,4 +552,14 @@ public class DetailSearchSalaryActivity extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    public void onValueSelected(Entry e, Highlight h) {
+
+    }
+
+    @Override
+    public void onNothingSelected() {
+
+    }
 }

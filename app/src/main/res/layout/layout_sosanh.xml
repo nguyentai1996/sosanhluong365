@@ -23,8 +23,8 @@
     </LinearLayout>
 
 
-
     <AutoCompleteTextView
+        android:singleLine="true"
         android:id="@+id/edNameJob"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -35,47 +35,33 @@
         android:background="@drawable/boder"
         android:drawableStart="@drawable/ic_search"
         android:drawableEnd="@drawable/ic_action_name"
-        android:drawablePadding="15dp"
+        android:drawablePadding="12dp"
+        android:fontFamily="@font/josefregular"
         android:hint="Công việc bạn muốn lựa chọn"
         android:maxLines="1"
-        android:textSize="12sp">
+        android:textSize="14sp">
 
     </AutoCompleteTextView>
 
 
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:background="@drawable/boder"
-        android:gravity="center_vertical"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_height="40dp">
 
-        <ImageView
-            android:src="@drawable/ic_city"
-            android:layout_width="20dp"
-            android:layout_height="20dp"></ImageView>
-        <TextView
-            android:layout_marginLeft="15dp"
-            android:id="@+id/tvCitysp"
-            android:visibility="visible"
-            android:drawableRight="@drawable/spinner"
+
+        <AutoCompleteTextView
+            android:layout_height="40dp"
+            android:drawableLeft="@drawable/ic_city"
+            android:background="@drawable/boder"
+            android:layout_marginTop="10dp"
+            android:id="@+id/edCityx"
+            android:drawablePadding="12dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/josefregular"
+            android:layout_marginEnd="20dp"
+            android:drawableRight="@drawable/ic_spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:text="Chọn tỉnh thành">
+            android:textSize="14sp"
+            android:hint="Chọn tỉnh thành">
 
-        </TextView>
-        <Spinner
-            android:visibility="invisible"
-            android:id="@+id/spinnerCity"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="12dp" />
-
-    </LinearLayout>
+        </AutoCompleteTextView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -90,6 +76,7 @@
 
 
         <Button
+            android:fontFamily="@font/josefibold"
             android:id="@+id/btnFind"
             android:layout_width="match_parent"
             android:layout_height="45dp"

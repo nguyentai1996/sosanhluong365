@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.timviec365">
 
     <application
@@ -9,14 +10,47 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.WebViewActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".activity.DetailDialogSearchSalary" />
-        <activity android:name=".activity.DetailSearchSalaryActivity" />
-        <activity android:name=".activity.DetailSalaryComparison" />
-        <activity android:name=".fragmentDialog.FindMoreDialog" />
-        <activity android:name=".activity.HomeActivity" />
-        <activity android:name=".activity.SplashActivity">
+
+        <receiver
+            android:name=".util.NetworkChangeReceiver"
+            android:label="NetworkChangeReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"
+                    tools:ignore="BatteryLife" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".activity.HistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".fragmentDialog.LoadHomeDialog"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.WebViewActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.DetailDialogSearchSalary"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.DetailSearchSalaryActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.DetailSalaryComparison"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fragmentDialog.FindMoreDialog"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fragmentDialog.LoadSearchSalaryDialog"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fragmentDialog.LoadFindDialog"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fragmentDialog.LoadFindSelectedFullDialog"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.HomeActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +59,8 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 

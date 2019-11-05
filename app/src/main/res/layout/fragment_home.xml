@@ -12,6 +12,9 @@ tools:context=".fragment.HomeFragment">
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -19,6 +22,40 @@ tools:context=".fragment.HomeFragment">
 
         <include layout="@layout/layout_sosanh"></include>
 
+        <LinearLayout
+            android:weightSum="4"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvHistory"
+                android:textColor="@color/purple"
+                android:layout_weight="3.5"
+                android:layout_marginLeft="23dp"
+                android:text="Lịch sử tìm kiếm"
+                android:textSize="14dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+            <TextView
+                android:layout_weight="0.5"
+                android:text="Sửa"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorYellow"
+                android:layout_marginRight="23dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+        </LinearLayout>
+
+        <ListView
+            android:stackFromBottom="true"
+            android:transcriptMode="normal"
+            android:layout_marginTop="10dp"
+            android:id="@+id/lvHis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </ListView>
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
@@ -91,11 +128,11 @@ tools:context=".fragment.HomeFragment">
                 android:weightSum="6">
 
                 <LinearLayout
+                    android:layout_weight="5.5"
                     android:orientation="vertical"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_weight="4"
                     android:layout_height="wrap_content">
 
                     <TextView
@@ -114,19 +151,18 @@ tools:context=".fragment.HomeFragment">
                         android:layout_marginTop="10dp"
                         android:textAlignment="viewStart"
                         android:textColor="@color/dark"
-                        android:layout_marginRight="15dp"
                         tools:ignore="RtlCompat"></TextView>
 
                 </LinearLayout>
 
                 <ImageView
+                    android:layout_width="140dp"
+                    android:layout_height="125dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
                     android:layout_marginRight="20dp"
-                    android:layout_weight="2"
-                    android:src="@drawable/thongke"
-                    android:layout_width="0dp"
-                    android:layout_height="125dp"></ImageView>
+                    android:layout_marginBottom="15dp"
+                    android:src="@drawable/thongke"></ImageView>
+
             </LinearLayout>
 
             <LinearLayout
@@ -164,6 +200,7 @@ tools:context=".fragment.HomeFragment">
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
                         android:text="@string/sosanhba"
                         android:textAlignment="viewEnd"
                         android:textColor="@color/dark"

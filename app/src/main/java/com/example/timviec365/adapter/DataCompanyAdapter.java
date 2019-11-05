@@ -2,12 +2,9 @@ package com.example.timviec365.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,16 +14,10 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timviec365.R;
-import com.example.timviec365.activity.DetailSalaryComparison;
 import com.example.timviec365.activity.WebViewActivity;
-import com.example.timviec365.model.Content;
 import com.example.timviec365.model.DataCompany;
-import com.example.timviec365.model.Photo;
 import com.squareup.picasso.Picasso;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 
@@ -120,10 +111,8 @@ public class DataCompanyAdapter extends RecyclerView.Adapter<DataCompanyAdapter.
     }
 
 
-
-
-//    public void clearList() {
-//        if (!this.exampleList.isEmpty())
-//            this.exampleList.clear();
-//    }
+    public void clearList() {
+        if (!this.dataCompanyList.isEmpty())
+            this.dataCompanyList.clear();
+    }
 }

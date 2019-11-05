@@ -1,7 +1,6 @@
 package com.example.timviec365.adapter;
 
 import android.content.Context;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,8 +57,7 @@ public class SpinnerCareerAdapter  extends ArrayAdapter<String> {
         //        return view;
         View v = convertView;
         if (v == null) {
-            LayoutInflater vi =
-                    (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater vi = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = vi.inflate(viewResourceId, null);
         }
         final String city = arrChoiceRhythm.get(position);

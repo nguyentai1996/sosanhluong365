@@ -13,8 +13,14 @@
         android:layout_width="340dp"
         android:layout_height="wrap_content">
 
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/dark"
+            android:fontFamily="@font/josefregular"
+            android:text=" Nơi làm việc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
         <LinearLayout
-            android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:background="@drawable/boder"
@@ -28,31 +34,27 @@
 
             </ImageView>
 
-
-            <TextView
-                android:layout_marginLeft="10dp"
-                android:id="@+id/tvCity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableRight="@drawable/spinner"
-                android:drawablePadding="15dp"
-                android:text="Chọn nơi làm việc"
-                android:textSize="12sp"
-                android:visibility="visible">
-
-            </TextView>
-
             <Spinner
                 android:id="@+id/spCity"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="chọn nơi làm việc"
                 android:textSize="12dp"
-                android:visibility="invisible" />
+                />
 
         </LinearLayout>
-        <LinearLayout
+
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/dark"
+            android:fontFamily="@font/josefregular"
             android:layout_marginTop="10dp"
+            android:text=" Bằng cấp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
+
+
+        <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:background="@drawable/boder"
@@ -67,19 +69,8 @@
 
             </ImageView>
 
-            <TextView
-                android:id="@+id/tvLevel"
-                android:visibility="visible"
-                android:drawableRight="@drawable/spinner"
-                android:layout_marginLeft="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="Chọn bằng cấp">
 
-            </TextView>
             <Spinner
-                android:visibility="invisible"
                 android:textSize="12sp"
                 android:id="@+id/spLevel"
                 android:layout_width="match_parent"
@@ -88,10 +79,16 @@
 
         </LinearLayout>
 
-
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/dark"
+            android:fontFamily="@font/josefregular"
+            android:layout_marginTop="10dp"
+            android:text=" Kinh nghiệm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
 
         <LinearLayout
-            android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:background="@drawable/boder"
@@ -105,21 +102,9 @@
 
             </ImageView>
 
-            <TextView
-                android:id="@+id/tvExp"
-                android:visibility="visible"
-                android:layout_marginLeft="10dp"
-                android:drawableRight="@drawable/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="Chọn kinh nghiệm">
-
-            </TextView>
 
 
             <Spinner
-                android:visibility="invisible"
                 android:hint="chọn kinh nghiệm"
                 android:textSize="12dp"
                 android:id="@+id/spExperience"
@@ -127,8 +112,16 @@
                 android:layout_height="40dp"
                 />
         </LinearLayout>
-        <LinearLayout
+
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/dark"
+            android:fontFamily="@font/josefregular"
             android:layout_marginTop="10dp"
+            android:text=" Hình thức làm việc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
+        <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:background="@drawable/boder"
@@ -143,21 +136,7 @@
 
             </ImageView>
 
-            <TextView
-                android:layout_marginLeft="10dp"
-                android:id="@+id/tvForm"
-                android:visibility="visible"
-                android:drawableRight="@drawable/spinner"
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="Chọn hình thưc làm việc">
-
-            </TextView>
             <Spinner
-                android:visibility="invisible"
-                android:drawablePadding="15dp"
                 android:hint="chọn hình thức làm việc"
                 android:textSize="12dp"
                 android:id="@+id/spform"
@@ -165,10 +144,17 @@
                 android:layout_height="40dp"
                 />
 
-</LinearLayout>
+        </LinearLayout>
 
-        <LinearLayout
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/dark"
+            android:fontFamily="@font/josefregular"
             android:layout_marginTop="10dp"
+            android:text=" Giới tính"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
+        <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:background="@drawable/boder"
@@ -183,21 +169,9 @@
 
             </ImageView>
 
-            <TextView
-                android:layout_marginLeft="10dp"
-                android:id="@+id/tvGender"
-                android:visibility="visible"
 
-                android:drawableRight="@drawable/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="Chọn giới tính">
-
-            </TextView>
 
             <Spinner
-                android:visibility="invisible"
                 android:drawablePadding="15dp"
                 android:textSize="12dp"
                 android:id="@+id/spGender"
@@ -205,8 +179,16 @@
                 android:layout_height="40dp"
                 />
         </LinearLayout>
-        <LinearLayout
+
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/dark"
+            android:fontFamily="@font/josefregular"
             android:layout_marginTop="10dp"
+            android:text=" Cấp bậc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
+        <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:background="@drawable/boder"
@@ -221,20 +203,8 @@
 
             </ImageView>
 
-            <TextView
-                android:id="@+id/tvRank"
-                android:visibility="visible"
-                android:drawableRight="@drawable/spinner"
-               android:layout_marginLeft="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="Chọn cấp bậc">
-
-            </TextView>
 
             <Spinner
-                android:visibility="invisible"
                 android:hint="chọn cấp bậc"
                 android:textSize="12dp"
                 android:id="@+id/spRank"
@@ -243,7 +213,7 @@
                 />
 
 
-</LinearLayout>
+        </LinearLayout>
 
         <Button
             android:layout_gravity="center"

@@ -15,9 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timviec365.R;
 import com.example.timviec365.activity.WebViewActivity;
-import com.example.timviec365.model.DataCompany;
 import com.example.timviec365.model.DataCompanyNumberOne;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -104,8 +102,8 @@ public class DataCompanyNumberOneAdapter extends RecyclerView.Adapter<DataCompan
 
 
 
-//    public void clearList() {
-//        if (!this.exampleList.isEmpty())
-//            this.exampleList.clear();
-//    }
+    public void clearList() {
+        if (!this.dataCompanyNumberOneList.isEmpty())
+            this.dataCompanyNumberOneList.clear();
+    }
 }

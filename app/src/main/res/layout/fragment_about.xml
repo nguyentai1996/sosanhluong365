@@ -10,6 +10,12 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -49,7 +55,7 @@
                     android:background="@drawable/boder"
                     android:drawableLeft="@drawable/ic_search"
                     android:drawableRight="@drawable/ic_action_name"
-                    android:drawablePadding="12dp"
+                    android:drawablePadding="12sp"
                     android:hint="Công việc bạn muốn lựa chọn"
                     android:maxLines="1"
                     android:textSize="12dp">
@@ -57,49 +63,28 @@
                 </AutoCompleteTextView>
 
 
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
+
+                <AutoCompleteTextView
+                    android:id="@+id/SpCareerSearchSalary"
                     android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/imagetop"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
                     android:background="@drawable/boder"
-                    android:gravity="center_vertical"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_height="40dp">
+                    android:drawableLeft="@drawable/ic_career"
+                    android:drawableRight="@drawable/ic_spinner"
+                    android:drawablePadding="12sp"
+                    android:hint="Ngành nghề (phù hợp với công việc)"
+                    android:maxLines="1"
+                    android:textSize="12dp">
 
-                    <ImageView
-                        android:src="@drawable/ic_city"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"></ImageView>
-                    <TextView
-                        android:layout_marginLeft="15dp"
-                        android:id="@+id/nganhnghe"
-                        android:layout_marginRight="5dp"
-                        android:visibility="visible"
-                        android:drawableRight="@drawable/spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="13sp"
-                        android:text="Ngành nghề (phù hợp với công việc)">
+                </AutoCompleteTextView>
 
-                    </TextView>
 
-                    <Spinner
-                        android:visibility="gone"
-                        android:id="@+id/SpCareerSearchSalary"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_below="@+id/imagetop"
-                        android:layout_gravity="center_horizontal"
-                        android:drawableRight="@drawable/spinner"
-                        android:drawablePadding="15dp"
-                        android:hint="Ngành nghề"
-                        android:maxLines="1"
-                        android:textSize="13sp">
-
-                    </Spinner>
-
-                </LinearLayout>
+            </LinearLayout>
 
 
 
@@ -277,9 +262,9 @@
                 </LinearLayout>
 
             </RelativeLayout>
-        </LinearLayout>
 
 
+</LinearLayout>
     </ScrollView>
 
 </FrameLayout>

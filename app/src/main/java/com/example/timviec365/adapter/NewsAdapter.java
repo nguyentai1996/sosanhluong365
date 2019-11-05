@@ -1,6 +1,8 @@
 package com.example.timviec365.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timviec365.R;
-import com.example.timviec365.model.DataCompanyNumberOne;
+import com.example.timviec365.activity.WebViewActivity;
 import com.example.timviec365.model.DataNews;
 import com.squareup.picasso.Picasso;
 
@@ -22,6 +24,7 @@ import java.util.List;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     List<DataNews> dataNewsList;
     Context context;
+    String url;
 
     public NewsAdapter(List<DataNews> dataNewsList) {
 
@@ -43,10 +46,27 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final DataNews dataNews = dataNewsList.get(i);
 
-        viewHolder.tvCongty.setText(dataNews.getTitle() +"");
+        viewHolder.tvCongty.setText(dataNews.getTitle() + "");
+        viewHolder.tvtime.setText(dataNews.getCreatedDay() + "");
 
 
-        Picasso.get().load("https://timviec365.vn/ssl/upload/news/"+ dataNews.getImage()).into(viewHolder.postImg);
+        viewHolder.postImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                url = ("https://timviec365.vn/ssl/" + dataNews.getAlias() + "-b" + dataNews.getId()+ ".html");
+
+                Log.d("url",url);
+
+                Intent intent = new Intent(context, WebViewActivity.class);
+                intent.putExtra("url",url);
+                context.startActivity(intent);
+            }
+        });
+
+
+        Picasso.get().load("https://timviec365.vn/ssl/upload/news/" + dataNews.getImage()).into(viewHolder.postImg);
+
 
     }
 
@@ -59,7 +79,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         private TextView tvId;
         private TextView tvTitle;
         private TextView tvtime, tvDiadiem;
-        private TextView tvCongty,tvSalary;
+        private TextView tvCongty, tvSalary;
         private CardView cardItemRCV;
         private ImageView postImg;
 
@@ -81,8 +101,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         notifyDataSetChanged();
 
     }
-
-
 
 
 //    public void clearList() {

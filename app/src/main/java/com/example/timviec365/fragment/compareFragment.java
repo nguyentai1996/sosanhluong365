@@ -3,18 +3,11 @@ package com.example.timviec365.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.StrictMode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -26,15 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
 import com.example.timviec365.R;
-import com.example.timviec365.adapter.DataCompanyNumberOneAdapter;
+import com.example.timviec365.activity.WebViewActivity;
 import com.example.timviec365.adapter.NewsAdapter;
 import com.example.timviec365.config.JobRetrofit;
-import com.example.timviec365.model.DataCompanyNumberOne;
 import com.example.timviec365.model.DataNews;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +41,7 @@ public class compareFragment extends Fragment {
     private RecyclerView rcvNews;
     private LinearLayout lnShare;
     private NewsAdapter adapterRCV;
+    private LinearLayout lnAboutMe;
 
     public compareFragment() {
         // Required empty public constructor
@@ -65,6 +55,7 @@ public class compareFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_more, container, false);
         rcvNews = (RecyclerView) view.findViewById(R.id.rcvTintuc);
         lnShare = (LinearLayout) view.findViewById(R.id.lnShare);
+        lnAboutMe = (LinearLayout) view.findViewById(R.id.lnAboutMe);
 
         lnShare.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +66,14 @@ public class compareFragment extends Fragment {
 
 
 
-
+        lnAboutMe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), WebViewActivity.class);
+                intent.putExtra("url","https://timviec365.vn/gioi-thieu-chung.html");
+                startActivity(intent);
+            }
+        });
 
         rcvNews.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         SnapHelper snapHelper = new PagerSnapHelper();

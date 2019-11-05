@@ -7,19 +7,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.timviec365.R;
-import com.example.timviec365.activity.DetailSearchSalaryActivity;
+import com.example.timviec365.fragmentDialog.LoadSearchSalaryDialog;
 import com.example.timviec365.model.Career;
 
 import org.json.JSONArray;
@@ -39,12 +37,12 @@ public class AboutFragment extends Fragment {
     private static final String TAG = "AboutFragment";
 
     private ArrayList<Career> careerArrayList = new ArrayList<>();
-    private Spinner spCareer;
     private ImageView imgMore;
+    private int postionSpinner = -1;
 
     private Button edFindSalary;
     private TextView nganhnghe;
-    private AutoCompleteTextView edNameJob, edLevel, edExperience, edform, edGender, edRank;
+    private AutoCompleteTextView edNameJob,edCareer, edLevel, edExperience, edform, edGender, edRank;
 
 
     private String postionCareer= "", nameCareer = "";
@@ -64,13 +62,12 @@ public class AboutFragment extends Fragment {
 
         edFindSalary = view.findViewById(R.id.edFindSalary);
         imgMore = view.findViewById(R.id.imgMore);
-        nganhnghe = view.findViewById(R.id.nganhnghe);
         edLevel = view.findViewById(R.id.edLevel);
         edNameJob = view.findViewById(R.id.edNameJobSearchSalary);
-        spCareer = view.findViewById(R.id.SpCareerSearchSalary);
+        edCareer = view.findViewById(R.id.SpCareerSearchSalary);
 //        tvSelected = false;
 
-//        spinerNameJob();
+        spinerNameJob();
         spinerCareer();
 
 
@@ -80,30 +77,33 @@ public class AboutFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String key = edNameJob.getText().toString();
-                if (key.isEmpty()) {
-                    Toast.makeText(getContext(), "Vui lòng nhập công việc", Toast.LENGTH_SHORT).show();
-                }else if (postionCareer.equals("1000000")) {
-                    Toast.makeText(getContext(), "Vui lòng chọn ngành nghề", Toast.LENGTH_SHORT).show();
-                }else{
-                    Intent intent = new Intent(getContext(), DetailSearchSalaryActivity.class);
-                    intent.putExtra("key", key);
-                    intent.putExtra("career", postionCareer);
-                    intent.putExtra("nameCat", nameCareer);
 
-                    Log.d("abc", postionCareer);
-                    Log.d("abc", nameCareer);
+                for (int i = 0; i < careerArrayList.size(); i++) {
+
+                Career career = careerArrayList.get(i);
+                if (career.getNameCat().toLowerCase().equalsIgnoreCase(edCareer.getText().toString().trim().toLowerCase())) {
+                    postionSpinner = i;
+                }
+            }
+                if (key.equals("")) {
+                    Toast.makeText(getContext(), "Vui lòng nhập công việc", Toast.LENGTH_SHORT).show();
+                } else if (postionSpinner == -1) {
+                    Toast.makeText(getContext(), "Vui lòng chọn lại ngành nghề", Toast.LENGTH_SHORT).show();
+                }
+
+                else{
+                    Intent intent = new Intent(getContext(), LoadSearchSalaryDialog.class);
+                    intent.putExtra("key", key);
+                    intent.putExtra("career", careerArrayList.get(postionSpinner).getIdCat());
+                    intent.putExtra("nameCat", careerArrayList.get(postionSpinner).getNameCat());
+
+                    Log.d("abc", String.valueOf(postionSpinner));
+                    Log.d("abc", careerArrayList.get(postionSpinner).getNameCat());
                     startActivity(intent);
                 }
             }
         });
 
-        nganhnghe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                spCareer.setVisibility(View.VISIBLE);
-                nganhnghe.setVisibility(View.GONE);
-            }
-        });
         return view;
     }
 
@@ -186,38 +186,24 @@ public class AboutFragment extends Fragment {
 
     private void spinerCareer() {
 
-        Career career1 = new Career();
-        career1.setNameCat("Không chọn");
-        career1.setIdCat("1000000");
 
 
         Career career = new Career();
         career.setNameCat("Không yêu cầu");
         career.setIdCat("0");
         careerArrayList.add(career);
-        careerArrayList.add(career1);
         careerArrayList.addAll(getDataCeareer("adress.json"));
         ArrayAdapter<Career> adapter = new ArrayAdapter<Career>(getActivity(), R.layout.spinner_layout,R.id.tvSpiner, careerArrayList);
-        spCareer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                postionCareer = careerArrayList.get(i).getIdCat();
-                nameCareer = careerArrayList.get(i).getNameCat();
 
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-        spCareer.setAdapter(adapter);
+        edCareer.setAdapter(adapter);
     }
 
-//    private void spinerNameJob() {
-//        ArrayList<String> itemArrayList = getNameJob("adress.json");
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_layout, R.id.tvSpiner, itemArrayList);
-//        edNameJob.setThreshold(0);
-//        edNameJob.setAdapter(adapter);
-//    }
+    private void spinerNameJob() {
+        ArrayList<String> itemArrayList = getNameJob("adress.json");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_layout, R.id.tvSpiner, itemArrayList);
+        edNameJob.setThreshold(0);
+        edNameJob.setAdapter(adapter);
+    }
 
 
 }

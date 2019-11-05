@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">Sosanhluong365</string>
     <string name="sosanhtopmot">Tìm kiếm công việc phù hợp nhất</string>
-    <string name="sosanhmot">Timviec65.vn mang đến cho bạn hàng ngàn tin tuyển dung mỗi ngày trên toàn quốc giúp bạn chọn việc làm theo mong muốn</string>
+    <string name="sosanhmot">Timviec365.vn mang đến cho bạn hàng ngàn tin tuyển dụng mỗi ngày trên toàn quốc giúp bạn chọn việc làm theo mong muốn</string>
     <string name="sosanhhai">So sánh lương giúp bạn có cái nhìn thực tế hơn về thị trường làm việc, biết được mức lương nào phù hợp với khả năng
 giá trị bản thân nhất</string>
     <string name="sosanhba">Không chỉ giúp bạn tìm được việc làm phù hợp, chúng tôi biết bạn cần sự nhanh chóng và hiệu quả đây cũng là mục tiêu của Timviec365.vn</string>
 
     <string-array name="array_capbac">
+        <item>Chọn cấp bậc</item>
         <item>Không yêu cầu</item>
         <item>Mới tốt nghiệp</item>
         <item>Thực tập sinh</item>
@@ -18,14 +19,14 @@ giá trị bản thân nhất</string>
     </string-array>
 
     <string-array name="array_gioitinh">
-        <item>Không chọn</item>
+        <item>Chọn giới tính</item>
         <item>Nam</item>
         <item>Nữ</item>
 
     </string-array>
 
     <string-array name="array_hinhthuc">
-        <item>Không chọn</item>
+        <item>Chọn hình thức làm việc</item>
         <item>Toàn thời gian cố định</item>
         <item>Toàn thời gian tạm thời</item>
         <item>Bán thời gian cố đinh</item>
@@ -35,16 +36,18 @@ giá trị bản thân nhất</string>
     </string-array>
 
     <string-array name="array_bangcap">
+        <item>Chọn bằng cấp</item>
         <item>Không yêu cầu</item>
         <item>Sau đại học</item>
         <item>Đại học</item>
         <item>Cao đẳng</item>
-        <item>Trung cấp</item>
         <item>Trung học</item>
         <item>Khác</item>
     </string-array>
 
     <string-array name="array_exp">
+        <item>Chọn kinh nghiệm</item>
+        <item>Không yêu cầu kinh nghiệm</item>
         <item>Chưa có kinh nghiệm</item>
         <item>0 - 1 năm kinh nghiệm</item>
         <item>1 - 2 năm kinh nghiệm</item>

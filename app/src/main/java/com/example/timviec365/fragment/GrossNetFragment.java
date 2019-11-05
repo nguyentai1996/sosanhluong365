@@ -1,6 +1,7 @@
 package com.example.timviec365.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,9 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.example.timviec365.R;
+
+import java.text.NumberFormat;
+import java.util.Locale;
 
 
 /**
@@ -131,21 +135,26 @@ public class GrossNetFragment extends Fragment {
                 btnNetGross.setTextColor(getResources().getColor(R.color.yellow));
                 btnNetGross.setBackgroundColor(getResources().getColor(R.color.btngrossnet));
 
+
                 salaryGrossNet = edSalary.getText().toString();
                 other = edInsurrance.getText().toString();
                 dependent = edDependent.getText().toString();
 
 
                 if (salaryGrossNet.equals("")) {
-                    Toast.makeText(getContext(), "Vui lòng nhập lương của bạn", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Vui lòng nhập thu nhập của bạn", Toast.LENGTH_SHORT).show();
                 } else if (dependent.equals("")) {
                     Toast.makeText(getContext(), "Vui lòng nhập số người phụ thuộc", Toast.LENGTH_SHORT).show();
                 } else {
 
                     if (btnSalary.isChecked()) {
+
+                        Locale localeEN = new Locale("en", "EN");
+                        NumberFormat en = NumberFormat.getInstance(localeEN);
+
                         edInsurrance.setText("");
                         dependentt = Long.parseLong(dependent);
-                        tvFamily.setText("" + 3600000 * dependentt);
+                        tvFamily.setText("" + en.format(3600000 * dependentt));
                         z = (long) Double.parseDouble(salaryGrossNet);
                         TaxBHXH = (z * 8) / 100;
                         if (TaxBHXH > 2384000) {
@@ -273,36 +282,38 @@ public class GrossNetFragment extends Fragment {
                         TotalTaxInsurance = (long) (z + BHXH_NTD + bhtnld + bhtn_ntd + bhyt_ntd);
 
 
-                        tvInsurrance.setText("" + TotalInsurance);
-                        tvTax.setText("" + TotalTaxInsurance);
-                        tvIncomeTax.setText("" + IncomeTax);
-                        TNTT.setText("" + TaxThunhaptruocthue);
-                        TNCT.setText("" + tnct);
-                        tvBHTN_NTD.setText("" + bhtn_ntd);
-                        tvBHTNLD_NTD.setText("" + bhtnld);
-                        tvBHXH_NTD.setText("" + BHXH_NTD);
-                        tvBHYT_NTD.setText("" + bhyt_ntd);
-                        tvGrossSalary.setText("" + z);
-                        tvNetSalary.setText("" + Net);
-                        TTNCN.setText("" + IncomeTax);
-                        tvGross.setText("" + z);
-                        TaxTNCN5.setText("" + tncn1);
-                        TaxTNCN10.setText("" + tncn2);
-                        TaxTNCN15.setText("" + tncn3);
-                        TaxTNCN20.setText("" + tncn4);
-                        TaxTNCN25.setText("" + tncn5);
-                        TaxTNCN30.setText("" + tncn6);
-                        TaxTNCN35.setText("" + tncn7);
-                        tvSocialInsurance.setText("" + TaxBHXH);
-                        tvHealthInsurance.setText("" + TaxBHYT);
-                        tvUnemployment.setText("" + TaxBHTN);
+                        tvInsurrance.setText("" + en.format(TotalInsurance));
+                        tvTax.setText("" + en.format(TotalTaxInsurance));
+                        tvIncomeTax.setText("" + en.format(IncomeTax));
+                        TNTT.setText("" + en.format(TaxThunhaptruocthue));
+                        TNCT.setText("" + en.format(tnct));
+                        tvBHTN_NTD.setText("" + en.format(bhtn_ntd));
+                        tvBHTNLD_NTD.setText("" + en.format(bhtnld));
+                        tvBHXH_NTD.setText("" + en.format(BHXH_NTD));
+                        tvBHYT_NTD.setText("" + en.format(bhyt_ntd));
+                        tvGrossSalary.setText("" + en.format(z));
+                        tvNetSalary.setText("" + en.format(Net));
+                        TTNCN.setText("" + en.format(IncomeTax));
+                        tvGross.setText("" + en.format(z));
+                        TaxTNCN5.setText("" + en.format(tncn1));
+                        TaxTNCN10.setText("" + en.format(tncn2));
+                        TaxTNCN15.setText("" + en.format(tncn3));
+                        TaxTNCN20.setText("" + en.format(tncn4));
+                        TaxTNCN25.setText("" + en.format(tncn5));
+                        TaxTNCN30.setText("" + en.format(tncn6));
+                        TaxTNCN35.setText("" + en.format(tncn7));
+                        tvSocialInsurance.setText("" + en.format(TaxBHXH));
+                        tvHealthInsurance.setText("" + en.format(TaxBHYT));
+                        tvUnemployment.setText("" + en.format(TaxBHTN));
 
-                        tvNet.setText("" + Net);
+                        tvNet.setText("" + en.format(Net));
                     }
 
                     if (btnOther.isChecked()) {
+                        Locale localeEN = new Locale("en", "EN");
+                        NumberFormat en = NumberFormat.getInstance(localeEN);
                         if (other.equals("")) {
-                            Toast.makeText(getContext(), "Vui lòng nhập số tiền đóng bảo hiểm ngoài", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Vui lòng nhập số tiền đóng bảo hiểm khác", Toast.LENGTH_SHORT).show();
                         } else {
                             dependentt = (long) Double.parseDouble(dependent);
                             in = (long) Double.parseDouble(salaryGrossNet);
@@ -438,34 +449,34 @@ public class GrossNetFragment extends Fragment {
                             TotalTaxInsurance = (long) (in + BHXH_NTD + bhtnld + bhtn_ntd + bhyt_ntd);
 
 
-                            tvFamily.setText("" + 3600000 * dependentt);
-                            tvIncomeTax.setText("" + IncomeTax);
-                            tvInsurrance.setText("" + TotalInsurance);
-                            tvGrossSalary.setText("" + in);
-                            tvNetSalary.setText("" + Net);
-                            tvGross.setText("" + in);
+                            tvFamily.setText("" + en.format(3600000 * dependentt));
+                            tvIncomeTax.setText("" + en.format(IncomeTax));
+                            tvInsurrance.setText("" + en.format(TotalInsurance));
+                            tvGrossSalary.setText("" + en.format(in));
+                            tvNetSalary.setText("" + en.format(Net));
+                            tvGross.setText("" + en.format(in));
 
-                            tvBHXH_NTD.setText("" + BHXH_NTD);
-                            tvBHTNLD_NTD.setText("" + bhtnld);
-                            tvBHYT_NTD.setText("" + bhyt_ntd);
-                            tvBHTN_NTD.setText("" + bhtn_ntd);
+                            tvBHXH_NTD.setText("" + en.format(BHXH_NTD));
+                            tvBHTNLD_NTD.setText("" +en.format( bhtnld));
+                            tvBHYT_NTD.setText("" + en.format(bhyt_ntd));
+                            tvBHTN_NTD.setText("" + en.format(bhtn_ntd));
 
 
-                            TNTT.setText("" + TaxThunhaptruocthue);
-                            TaxTNCN5.setText("" + tncn1);
-                            TaxTNCN10.setText("" + tncn2);
-                            TTNCN.setText("" + IncomeTax);
-                            TaxTNCN15.setText("" + tncn3);
-                            TaxTNCN20.setText("" + tncn4);
-                            TaxTNCN25.setText("" + tncn5);
-                            TaxTNCN30.setText("" + tncn6);
-                            TaxTNCN35.setText("" + tncn7);
-                            TNCT.setText("" + tnct);
-                            tvSocialInsurance.setText("" + TaxBHXH);
-                            tvHealthInsurance.setText("" + TaxBHYT);
-                            tvUnemployment.setText("" + TaxBHTN);
-                            tvTax.setText("" + TotalTaxInsurance);
-                            tvNet.setText("" + Net);
+                            TNTT.setText("" +en.format( TaxThunhaptruocthue));
+                            TaxTNCN5.setText("" + en.format(tncn1));
+                            TaxTNCN10.setText("" + en.format(tncn2));
+                            TTNCN.setText("" + en.format(IncomeTax));
+                            TaxTNCN15.setText("" +en.format( tncn3));
+                            TaxTNCN20.setText("" + en.format(tncn4));
+                            TaxTNCN25.setText("" + en.format(tncn5));
+                            TaxTNCN30.setText("" + en.format(tncn6));
+                            TaxTNCN35.setText("" + en.format(tncn7));
+                            TNCT.setText("" + en.format(tnct));
+                            tvSocialInsurance.setText("" + en.format(TaxBHXH));
+                            tvHealthInsurance.setText("" + en.format(TaxBHYT));
+                            tvUnemployment.setText("" + en.format(TaxBHTN));
+                            tvTax.setText("" + en.format(TotalTaxInsurance));
+                            tvNet.setText("" + en.format(Net));
                         }
                     }
 
@@ -477,8 +488,11 @@ public class GrossNetFragment extends Fragment {
 
 
         btnNetGross.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
+                Locale localeEN = new Locale("en", "EN");
+                NumberFormat en = NumberFormat.getInstance(localeEN);
                 btnGrossNet.setBackgroundColor(getResources().getColor(R.color.btngrossnet));
                 btnNetGross.setBackgroundColor(getResources().getColor(R.color.yellow));
                 btnGrossNet.setTextColor(getResources().getColor(R.color.yellow));
@@ -494,8 +508,12 @@ public class GrossNetFragment extends Fragment {
                 } else {
                     if (btnSalary.isChecked()) {
                         edInsurrance.setText("");
-                        dependentt = Long.parseLong(dependent);
-                        tvFamily.setText("" + 3600000 * dependentt);
+
+                        String depentt = edDependent.getText().toString();
+                        long dependentt = Long.parseLong(depentt);
+
+
+                        tvFamily.setText("" + en.format((3600000 * dependentt)));
                         in = (long) Double.parseDouble(salaryGrossNet);
                         long tnqd = in - (9000000 + 3600000 * dependentt);
                         long tntt, tncn = 0, tnct = 0, tncn1 = 0, tncn2 = 0, tncn3 = 0, tncn4 = 0, tncn5 = 0, tncn6 = 0, tncn7 = 0;
@@ -615,10 +633,10 @@ public class GrossNetFragment extends Fragment {
 
 
                             gross = (long) (in + tncn + bhxh + bhyt + bhtn);
-                            tvGrossSalary.setText("" + gross);
+                            tvGrossSalary.setText("" + en.format(gross));
                         } else {
                             long gross = (long) (in + bhxh + bhyt + bhtn + tncn);
-                            tvGrossSalary.setText("" + gross);
+                            tvGrossSalary.setText("" + en.format(gross));
                         }
 
                         if (btnSalary.isChecked()) {
@@ -647,37 +665,37 @@ public class GrossNetFragment extends Fragment {
 
 
                         IncomeTax = tncn1 + tncn2 + tncn3 + tncn4 + tncn5 + tncn6 + tncn7;
-                        tvIncomeTax.setText("" + IncomeTax);
+                        tvIncomeTax.setText("" + en.format(IncomeTax));
 
                         TaxThunhaptruocthue = in - (TaxBHTN + TaxBHXH + TaxBHYT);//THU NHAP TRUOC THUE
 
-                        TNTT.setText("" + (tntt));
-                        TNCT.setText("" + tnct);
+                        TNTT.setText("" + en.format(tntt));
+                        TNCT.setText("" + en.format(tnct));
 
 
-                        tvInsurrance.setText("" + TotalInsurance);
+                        tvInsurrance.setText("" + en.format(TotalInsurance));
                         long gross = (long) (in + bhxh + bhyt + bhtn + tncn);
 //                        tvGrossSalary.setText("" + in);
-                        tvNetSalary.setText("" + in);
-                        tvGross.setText("" + gross);
-                        tvSocialInsurance.setText("" + bhxh);
-                        tvHealthInsurance.setText("" + bhyt);
-                        TaxTNCN5.setText("" + tncn1);
-                        TaxTNCN10.setText("" + tncn2);
-                        TaxTNCN15.setText("" + tncn3);
-                        TaxTNCN20.setText("" + tncn4);
-                        TaxTNCN25.setText("" + tncn5);
-                        TaxTNCN30.setText("" + tncn6);
-                        TaxTNCN35.setText("" + tncn7);
-                        TTNCN.setText("" + IncomeTax);
+                        tvNetSalary.setText("" + en.format(in));
+                        tvGross.setText("" + en.format(gross));
+                        tvSocialInsurance.setText("" + en.format(bhxh));
+                        tvHealthInsurance.setText("" + en.format(bhyt));
+                        TaxTNCN5.setText("" + en.format(tncn1));
+                        TaxTNCN10.setText("" + en.format(tncn2));
+                        TaxTNCN15.setText("" + en.format(tncn3));
+                        TaxTNCN20.setText("" + en.format(tncn4));
+                        TaxTNCN25.setText("" + en.format(tncn5));
+                        TaxTNCN30.setText("" + en.format(tncn6));
+                        TaxTNCN35.setText("" + en.format(tncn7));
+                        TTNCN.setText("" + en.format(IncomeTax));
 
-                        tvUnemployment.setText("" + bhtn);
-                        tvBHTN_NTD.setText("" + bhtn_ntd);
-                        tvBHTNLD_NTD.setText("" + bhtnld);
-                        tvBHXH_NTD.setText("" + bhxh_ntd);
-                        tvBHYT_NTD.setText("" + bhyt_ntd);
-                        tvTax.setText("" + (gross + bhxh_ntd + bhtn_ntd + bhyt_ntd + bhtnld));
-                        tvNet.setText("" + in);
+                        tvUnemployment.setText("" + en.format(bhtn));
+                        tvBHTN_NTD.setText("" + en.format(bhtn_ntd));
+                        tvBHTNLD_NTD.setText("" + en.format(bhtnld));
+                        tvBHXH_NTD.setText("" + en.format(bhxh_ntd));
+                        tvBHYT_NTD.setText("" + en.format(bhyt_ntd));
+                        tvTax.setText("" + en.format((gross + bhxh_ntd + bhtn_ntd + bhyt_ntd + bhtnld)));
+                        tvNet.setText("" + en.format(in));
                     }
 
                     if (btnOther.isChecked()) {
@@ -686,6 +704,8 @@ public class GrossNetFragment extends Fragment {
                         } else {
                             in = (long) Double.parseDouble(salaryGrossNet);
                             String otherrr = edInsurrance.getText().toString();
+                            String depentt = edDependent.getText().toString();
+                            long depent = Long.parseLong(depentt);
 
                             z = (long) Double.parseDouble(otherrr);
                             bhxh = ((z * 8) / 100);
@@ -714,7 +734,7 @@ public class GrossNetFragment extends Fragment {
                             long tongBaohiem = bhxh + bhyt + bhtn;
 
 
-                            long tnqd = in - (9000000 + 3600000 * dependentt);
+                            long tnqd = in - (9000000 + 3600000 * depent);
                             long tntt, tncn = 0, tnct = 0, tncn1 = 0, tncn2 = 0, tncn3 = 0, tncn4 = 0, tncn5 = 0, tncn6 = 0, tncn7 = 0;
 
                             if (tnqd > 0 && tnqd <= 4750000) {
@@ -801,95 +821,62 @@ public class GrossNetFragment extends Fragment {
                                 tncn4 = 2800000;
                                 tncn5 = 5000000;
                                 tncn6 = 8400000;
-                                tncn7 = (long) (tncn - 250000 - 500000 - 1200000 - 2800000 - 5000000 - 8400000);
+                                tncn7 = tncn - 250000 - 500000 - 1200000 - 2800000 - 5000000 - 8400000;
                             }
-                            tntt = tnct + 9000000 + 3600000 * dependentt;
-                            if (bhxh == 0 && bhyt == 0 && bhtn == 0) {
+                                tntt = tnct + 9000000 + 3600000 * depent;
 
-                                long gross = (long) ((in + tncn) / 0.895);
-                                bhxh = (gross * 8 / 100);
-                                if (bhxh > 2224000) {
-                                    bhxh = 2224000;
+                                long bhxh_ntd = z * 17 / 100; // bao hien xa hoi nha tuyen dung dong
+                                if (bhxh_ntd > 4726000) {
+                                    bhxh_ntd = 4726000;
                                 }
-                                bhyt = (long) (gross * 1.5 / 100);
-                                if (bhyt > 417000) {
-                                    bhyt = 417000;
+                                long bhtnld = (long) (z * 0.5 / 100);  // bảo hiểm tai nạn lao động
+                                if (bhtnld > 139000) {
+                                    bhtnld = 139000;
                                 }
-                                bhtn = (gross * 1 / 100);
-                                if (btnOne.isChecked() && bhtn > 836000) {
-                                    bhtn = 836000;
+                                long bhyt_ntd = z * 3 / 100;  // bảo hiểm y tế
+                                if (bhyt_ntd > 834000) {
+                                    bhyt_ntd = 834000;
                                 }
-                                if (btnTwo.isChecked() && bhtn > 742000) {
-                                    bhtn = 742000;
-                                }
-                                if (btnThree.isChecked() && bhtn > 650000) {
-                                    bhtn = 650000;
-                                }
-                                if (btnFour.isChecked() && bhtn > 584000) {
-                                    bhtn = 584000;
+                                long bhtn_ntd = z * 1 / 100;  // bảo hiểm thất nghiệp
+                                if (bhtn_ntd > 836000) {
+                                    bhtn_ntd = 836000;
                                 }
 
-
-                                gross = (long) (in + tncn + bhxh + bhyt + bhtn);
-                                tvGrossSalary.setText("" + gross);
-                            } else {
-                                long gross = (long) (in + bhxh + bhyt + bhtn + tncn);
-                                tvGrossSalary.setText("" + gross);
-                            }
+                                IncomeTax = tncn1 + tncn2 + tncn3 + tncn4 + tncn5 + tncn6 + tncn7;
 
 
-                            long bhxh_ntd = z * 17 / 100; // bao hien xa hoi nha tuyen dung dong
-                            if (bhxh_ntd > 4726000) {
-                                bhxh_ntd = 4726000;
-                            }
-                            long bhtnld = (long) (z * 0.5 / 100);  // bảo hiểm tai nạn lao động
-                            if (bhtnld > 139000) {
-                                bhtnld = 139000;
-                            }
-                            long bhyt_ntd = z * 3 / 100;  // bảo hiểm y tế
-                            if (bhyt_ntd > 834000) {
-                                bhyt_ntd = 834000;
-                            }
-                            long bhtn_ntd = z * 1 / 100;  // bảo hiểm thất nghiệp
-                            if (bhtn_ntd > 836000) {
-                                bhtn_ntd = 836000;
-                            }
+                                tvIncomeTax.setText("" + en.format(IncomeTax));
 
-                            IncomeTax = tncn1 + tncn2 + tncn3 + tncn4 + tncn5 + tncn6 + tncn7;
-
-
-                            tvIncomeTax.setText("" + IncomeTax);
-
-                            tvInsurrance.setText("" + tongBaohiem);
-                            tvFamily.setText("" + (3600000 * dependentt));
-                            long grossSalary = (in + IncomeTax);
-                            tvGrossSalary.setText("" + (grossSalary + tongBaohiem));
-                            tvNetSalary.setText("" + in);
-                            tvNet.setText("" + in);
-                            TNTT.setText("" + (tntt));
-                            TNCT.setText("" + (tntt - 9000000 - 3600000 * dependentt));
-                            tvGross.setText("" + (grossSalary + tongBaohiem));
-                            tvSocialInsurance.setText("" + bhxh);
-                            tvHealthInsurance.setText("" + bhyt);
-                            tvUnemployment.setText("" + bhtn);
-                            tvBHTN_NTD.setText("" + bhtn_ntd);
-                            tvBHTNLD_NTD.setText("" + bhtnld);
-                            tvBHXH_NTD.setText("" + bhxh_ntd);
-                            tvBHYT_NTD.setText("" + bhyt_ntd);
-                            TaxTNCN5.setText("" + tncn1);
-                            TTNCN.setText("" + IncomeTax);
-                            TaxTNCN10.setText("" + tncn2);
-                            TaxTNCN15.setText("" + tncn3);
-                            TaxTNCN20.setText("" + tncn4);
-                            TaxTNCN25.setText("" + tncn5);
-                            TaxTNCN30.setText("" + tncn6);
-                            TaxTNCN35.setText("" + tncn7);
-                            tvTax.setText("" + ((grossSalary + tongBaohiem) + bhxh_ntd + bhtnld + bhtn_ntd + bhyt_ntd));
+                                tvInsurrance.setText("" + en.format(tongBaohiem));
+                                tvFamily.setText("" + en.format(3600000 * depent));
+                                long grossSalary = (in + IncomeTax);
+                                tvGrossSalary.setText("" + en.format(grossSalary + tongBaohiem));
+                                tvNetSalary.setText("" + en.format(in));
+                                tvNet.setText("" + en.format(in));
+                                TNTT.setText("" + en.format(tntt));
+                                TNCT.setText("" + en.format(tntt - 9000000 - 3600000 * depent));
+                                tvGross.setText("" + en.format(grossSalary + tongBaohiem));
+                                tvSocialInsurance.setText("" + en.format(bhxh));
+                                tvHealthInsurance.setText("" + en.format(bhyt));
+                                tvUnemployment.setText("" + en.format(bhtn));
+                                tvBHTN_NTD.setText("" + en.format(bhtn_ntd));
+                                tvBHTNLD_NTD.setText("" + en.format(bhtnld));
+                                tvBHXH_NTD.setText("" + en.format(bhxh_ntd));
+                                tvBHYT_NTD.setText("" + en.format(bhyt_ntd));
+                                TaxTNCN5.setText("" + en.format(tncn1));
+                                TTNCN.setText("" + en.format(IncomeTax));
+                                TaxTNCN10.setText("" + en.format(tncn2));
+                                TaxTNCN15.setText("" + en.format(tncn3));
+                                TaxTNCN20.setText("" + en.format(tncn4));
+                                TaxTNCN25.setText("" + en.format(tncn5));
+                                TaxTNCN30.setText("" + en.format(tncn6));
+                                TaxTNCN35.setText("" + en.format(tncn7));
+                                tvTax.setText("" + en.format((grossSalary + tongBaohiem) + bhxh_ntd + bhtnld + bhtn_ntd + bhyt_ntd));
 //                        tvNet.setText("" + Net);
+                            }
                         }
                     }
                 }
-            }
 
         });
 
