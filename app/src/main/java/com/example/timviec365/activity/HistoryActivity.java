@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity {
     ListView lvHis;
+    private ImageView back;
     private SearchView searchView;
     HistoryAdapter historyAdapter = null;
 //    HistoryDAO historyDAO;
@@ -41,6 +43,7 @@ public class HistoryActivity extends AppCompatActivity {
         registerForContextMenu(lvHis);
 
 
+        boolean isIconfied = searchView.isIconfiedByDefault();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -78,6 +81,13 @@ public class HistoryActivity extends AppCompatActivity {
             }
         });
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HistoryActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -93,6 +103,7 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
 
         lvHis = (ListView) findViewById(R.id.lvHistory);
+        back = (ImageView) findViewById(R.id.back);
         searchView = findViewById(R.id.searchView);
 
     }

@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.timviec365.R;
 import com.example.timviec365.activity.DetailSalaryComparison;
-import com.example.timviec365.util.NetworkChangeReceiver;
 import com.github.ybq.android.spinkit.sprite.Sprite;
 import com.github.ybq.android.spinkit.style.Circle;
 
@@ -31,7 +30,6 @@ public class LoadHomeDialog extends AppCompatActivity {
 
             setContentView(R.layout.activity_load_dialog);
 
-            NetworkChangeReceiver = new NetworkChangeReceiver();
             ProgressBar progressBar = findViewById(R.id.spin_kit);
             Sprite doubleBounce = new Circle();
             progressBar.setIndeterminateDrawable(doubleBounce);

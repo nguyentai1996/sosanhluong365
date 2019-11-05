@@ -3,9 +3,13 @@ package com.example.timviec365.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +37,6 @@ import com.example.timviec365.fragmentDialog.LoadHomeDialog;
 import com.example.timviec365.model.City;
 import com.example.timviec365.model.History;
 import com.example.timviec365.splDAO.HistoryDAO;
-import com.example.timviec365.util.NetworkChangeReceiver;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
@@ -55,16 +59,16 @@ import static com.example.timviec365.activity.DetailSalaryComparison.hideSoftKey
  */
 public class HomeFragment extends Fragment implements OnChartValueSelectedListener {
     private BroadcastReceiver NetworkChangeReceiver = null;
-    private NetworkChangeReceiver etworkChangeReceiver ;
     private static int MAX_LENGTH = 100;
     private AutoCompleteTextView edNameJob;
     private AutoCompleteTextView edCityx;
     private Button btnFind;
     private TextView tvCitysp;
     private ArrayList<City> cityBeansList = new ArrayList<>();
-    private int postionSpinner = -1, n;
-    private TextView tvHistory;
+    private int postionSpinner = -1;
+    private TextView tvHistory,tvedit;
     private ListView lvHis;
+    private LinearLayout imgConectApp;
     private Context context;
     HistoryHomeAdapter historyAdapter = null;
     HistoryDAO historyDAO;
@@ -81,10 +85,9 @@ public class HomeFragment extends Fragment implements OnChartValueSelectedListen
         context = view.getContext();
         setupUI(view.findViewById(R.id.parent));
 
-
-        NetworkChangeReceiver = new NetworkChangeReceiver();
-
         edCityx = view.findViewById(R.id.edCityx);
+        imgConectApp = view.findViewById(R.id.imgConectApp);
+        tvedit = view.findViewById(R.id.tvedit);
         btnFind = view.findViewById(R.id.btnFind);
         edNameJob = view.findViewById(R.id.edNameJob);
         lvHis = view.findViewById(R.id.lvHis);
@@ -96,6 +99,24 @@ public class HomeFragment extends Fragment implements OnChartValueSelectedListen
         Collections.reverse(arrHis);
         setListViewHeightBasedOnItems(lvHis);
 
+        tvedit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        imgConectApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage("vn.timviec365.myapplication");
+                if (launchIntent != null) {
+                    startActivity(launchIntent);//null pointer check in case package name was not found
+                }
+            }
+        });
         lvHis.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -265,16 +286,6 @@ public class HomeFragment extends Fragment implements OnChartValueSelectedListen
     }
 
 
-    private void setText() {
-        String nameJob = "Việc làm";
-        String text = "ở";
-        String Adress = "Hà Nội";
-
-
-        String textfinal = nameJob + text + Adress;
-    }
-
-
     public void setupUI(View view) {
 
         // Set up touch listener for non-text box views to hide keyboard.
@@ -347,11 +358,30 @@ public class HomeFragment extends Fragment implements OnChartValueSelectedListen
 
     public void broadcastIntent() {
         context.registerReceiver(NetworkChangeReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
     }
 
-    public void tvedit(View view) {
-        Intent intent = new Intent(getContext(), HistoryActivity.class);
-        startActivity(intent);
+    public void launchApp(String packageName) {
+        Intent intent = new Intent();
+        intent.setPackage(packageName);
+
+        PackageManager pm = context.getPackageManager();
+        List<ResolveInfo> resolveInfos = pm.queryIntentActivities(intent, 0);
+        Collections.sort(resolveInfos, new ResolveInfo.DisplayNameComparator(pm));
+
+        if(resolveInfos.size() > 0) {
+            ResolveInfo launchable = resolveInfos.get(0);
+            ActivityInfo activity = launchable.activityInfo;
+            ComponentName name=new ComponentName(activity.applicationInfo.packageName,
+                    activity.name);
+            Intent i=new Intent(Intent.ACTION_MAIN);
+
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                    Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+            i.setComponent(name);
+
+            startActivity(i);
+        }
     }
 
 }

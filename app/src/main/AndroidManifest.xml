@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.timviec365">
 
     <application
@@ -10,16 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <receiver
-            android:name=".util.NetworkChangeReceiver"
-            android:label="NetworkChangeReceiver" >
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"
-                    tools:ignore="BatteryLife" />
-                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
-            </intent-filter>
-        </receiver>
 
         <activity
             android:name=".activity.HistoryActivity"
@@ -45,6 +34,9 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".fragmentDialog.LoadFindSelectedFullDialog"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".fragment.HomeFragment"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.HomeActivity"
             android:windowSoftInputMode="stateHidden"

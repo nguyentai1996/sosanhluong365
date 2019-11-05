@@ -21,6 +21,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/imgConectApp"
                 android:layout_width="match_parent"
                 android:layout_height="182dp"
                 android:gravity="center_vertical"

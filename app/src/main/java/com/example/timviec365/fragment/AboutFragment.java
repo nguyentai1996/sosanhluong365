@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +32,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.timviec365.activity.DetailSalaryComparison.hideSoftKeyboard;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,6 +43,7 @@ public class AboutFragment extends Fragment {
 
     private ArrayList<Career> careerArrayList = new ArrayList<>();
     private ImageView imgMore;
+    private LinearLayout imgConectApp;
     private int postionSpinner = -1;
 
     private Button edFindSalary;
@@ -58,11 +64,12 @@ public class AboutFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_about, container, false);
-
+        setupUI(view.findViewById(R.id.parent));
 
         edFindSalary = view.findViewById(R.id.edFindSalary);
         imgMore = view.findViewById(R.id.imgMore);
         edLevel = view.findViewById(R.id.edLevel);
+        imgConectApp = view.findViewById(R.id.imgConectApp);
         edNameJob = view.findViewById(R.id.edNameJobSearchSalary);
         edCareer = view.findViewById(R.id.SpCareerSearchSalary);
 //        tvSelected = false;
@@ -70,7 +77,15 @@ public class AboutFragment extends Fragment {
         spinerNameJob();
         spinerCareer();
 
-
+        imgConectApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent launchIntent = getContext().getPackageManager().getLaunchIntentForPackage("vn.timviec365.myapplication");
+                if (launchIntent != null) {
+                    startActivity(launchIntent);//null pointer check in case package name was not found
+                }
+            }
+        });
 
         edFindSalary.setOnClickListener(new View.OnClickListener() {
 
@@ -204,7 +219,26 @@ public class AboutFragment extends Fragment {
         edNameJob.setThreshold(0);
         edNameJob.setAdapter(adapter);
     }
+    public void setupUI(View view) {
 
+        // Set up touch listener for non-text box views to hide keyboard.
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    hideSoftKeyboard(getActivity());
+                    return false;
+                }
+            });
+        }
+
+        //If a layout container, iterate over children and seed recursion.
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                setupUI(innerView);
+            }
+        }
+    }
 
 }
 

@@ -39,6 +39,7 @@ public class compareFragment extends Fragment {
     private List<DataNews>  dataNewsList = new ArrayList<>();
     private LinearLayoutManager linearLayoutManager;
     private RecyclerView rcvNews;
+    private LinearLayout imgConectApp;
     private LinearLayout lnShare;
     private NewsAdapter adapterRCV;
     private LinearLayout lnAboutMe;
@@ -56,6 +57,7 @@ public class compareFragment extends Fragment {
         rcvNews = (RecyclerView) view.findViewById(R.id.rcvTintuc);
         lnShare = (LinearLayout) view.findViewById(R.id.lnShare);
         lnAboutMe = (LinearLayout) view.findViewById(R.id.lnAboutMe);
+        imgConectApp = (LinearLayout) view.findViewById(R.id.imgConectApp);
 
         lnShare.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +66,15 @@ public class compareFragment extends Fragment {
             }
         });
 
-
+        imgConectApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent launchIntent = getContext().getPackageManager().getLaunchIntentForPackage("vn.timviec365.myapplication");
+                if (launchIntent != null) {
+                    startActivity(launchIntent);//null pointer check in case package name was not found
+                }
+            }
+        });
 
         lnAboutMe.setOnClickListener(new View.OnClickListener() {
             @Override

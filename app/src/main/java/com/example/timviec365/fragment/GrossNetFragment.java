@@ -2,12 +2,15 @@ package com.example.timviec365.fragment;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,12 +22,15 @@ import com.example.timviec365.R;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import static com.example.timviec365.activity.DetailSalaryComparison.hideSoftKeyboard;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class GrossNetFragment extends Fragment {
     private EditText edSalary;
+    private LinearLayout imgConectApp;
     private EditText edDependent;
     private EditText edInsurrance;
     private RadioButton btnOther;
@@ -86,7 +92,11 @@ public class GrossNetFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_grossnet, container, false);
+        setupUI(view.findViewById(R.id.parent));
+
+
         edSalary = view.findViewById(R.id.edSalary);
+        imgConectApp = view.findViewById(R.id.imgConectApp);
         edInsurrance = view.findViewById(R.id.other);
 
         edDependent = view.findViewById(R.id.edDependent);
@@ -125,6 +135,15 @@ public class GrossNetFragment extends Fragment {
         TaxTNCN35 = view.findViewById(R.id.TaxTNCN35);
         TaxTNCN30 = view.findViewById(R.id.TaxTNCN30);
 
+        imgConectApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent launchIntent = getContext().getPackageManager().getLaunchIntentForPackage("vn.timviec365.myapplication");
+                if (launchIntent != null) {
+                    startActivity(launchIntent);//null pointer check in case package name was not found
+                }
+            }
+        });
 
         btnGrossNet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -485,6 +504,7 @@ public class GrossNetFragment extends Fragment {
             }
 
         });
+
 
 
         btnNetGross.setOnClickListener(new View.OnClickListener() {
@@ -881,6 +901,28 @@ public class GrossNetFragment extends Fragment {
         });
 
         return view;
+    }
+
+
+    public void setupUI(View view) {
+
+        // Set up touch listener for non-text box views to hide keyboard.
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    hideSoftKeyboard(getActivity());
+                    return false;
+                }
+            });
+        }
+
+        //If a layout container, iterate over children and seed recursion.
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                setupUI(innerView);
+            }
+        }
     }
 
 }

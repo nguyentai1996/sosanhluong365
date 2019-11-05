@@ -40,7 +40,7 @@ tools:context=".fragment.HomeFragment">
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:onClick="tvedit"
+                android:id="@+id/tvedit"
                 android:layout_weight="0.5"
                 android:text="Sửa"
                 android:textAlignment="viewEnd"

@@ -15,11 +15,11 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,7 +53,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,6 +68,8 @@ public class DetailSalaryComparison extends AppCompatActivity {
     private int postionSpinner = -1,countcompany = 0;
     private String province = "";
     private BarChart mChart;
+    private LinearLayout imgConectApp;
+    private HistoryDAO historyDAO;
     private Button btnFind;
     private AutoCompleteTextView edCityx;
     private HorizontalBarChart horizontalBarChart;
@@ -80,12 +81,7 @@ public class DetailSalaryComparison extends AppCompatActivity {
     private TextView tv4, tvnJ, namename, idNamejob, idSite, tvnameJob, tvAdress, tvColleges, tvHighSchool, tvNoNeed, tvAfterUniversity, tvUniversity, tvOther;
     private String key = "", dataline1, dataline2, dataline3, dataline4, dataline5, dataline6, dataline7, dataline8, dataline9;
     private String dataExp1, dataExp2, dataExp3, dataExp4, dataExp5, dataExp6;
-    private TextView tvHistory;
-    private ListView lvHis;
-    private Context context;
-    HistoryHomeAdapter historyAdapter = null;
-    HistoryDAO historyDAO;
-    public static List<History> arrHis = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,11 +92,11 @@ public class DetailSalaryComparison extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_detail_salary_comparison);
-
         setupUI(findViewById(R.id.parent));
 
 
         mChart = findViewById(R.id.combinedChart);
+
         horizontalBarChart = findViewById(R.id.HorizontalBarChart);
 
         dataCompanyList = new ArrayList<>();
@@ -112,6 +108,7 @@ public class DetailSalaryComparison extends AppCompatActivity {
         rcv_company.setHasFixedSize(true);
         rcv_company.setAdapter(adapterRCV);
         idNamejob = findViewById(R.id.idNamejob);
+        imgConectApp = findViewById(R.id.imgConectApp);
         tvAdress = findViewById(R.id.tvAdress);
         tv4 = findViewById(R.id.tv4);
         tvnJ = findViewById(R.id.tvnJ);
@@ -128,51 +125,6 @@ public class DetailSalaryComparison extends AppCompatActivity {
         edNameJob = findViewById(R.id.edNameJob);
         edCityx = findViewById(R.id.edCityx);
         btnFind = findViewById(R.id.btnFind);
-
-        lvHis = findViewById(R.id.lvHis);
-        tvHistory = findViewById(R.id.tvHistory);
-        historyDAO = new HistoryDAO(getApplication());
-        arrHis = historyDAO.getAllHistory();
-        historyAdapter = new HistoryHomeAdapter(getApplicationContext(), arrHis);
-        lvHis.setAdapter(historyAdapter);
-        Collections.reverse(arrHis);
-        setListViewHeightBasedOnItems(lvHis);
-
-        tvHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DetailSalaryComparison.this, HistoryActivity.class);
-                startActivity(intent);
-            }
-        });
-        lvHis.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(DetailSalaryComparison.this, LoadHomeDialog.class);
-                Bundle b = new Bundle();
-
-
-                b.putString("find", arrHis.get(position).getKey());
-                b.putString("pro", arrHis.get(position).getIdCity());
-                b.putString("namecity", arrHis.get(position).getNameCity());
-
-                Log.d("nameidCityx", arrHis.get(position).getNameCity());
-                Log.d("idCityx", arrHis.get(position).getIdCity());
-                Log.d("idCityxMain", arrHis.get(position).getIdMain());
-                Log.d("idCityxkey", arrHis.get(position).getKey());
-
-                intent.putExtras(b);
-                startActivity(intent);
-            }
-        });
-        lvHis.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                return false;
-            }
-        });
-
-
 
         RetrofitGetCompany();
         RetrofitGetData();
@@ -413,7 +365,6 @@ public class DetailSalaryComparison extends AppCompatActivity {
         SpannableString sitesite1 = new SpannableString(site1);
         sitesite1.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.textdetail)), 0, site1.length(), 0);
         builderSite.append(sitesite1);
-
         SpannableStringBuilder builder2 = new SpannableStringBuilder();
 
 
@@ -432,10 +383,12 @@ public class DetailSalaryComparison extends AppCompatActivity {
         textKey.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), 0, note.length(), 0);
         builder1.append(textKey);
 
+
         SpannableString tvnameJobx = new SpannableString(note2 + note3 + note4);
         tvnameJobx.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorYellow)), 0, note.length(), 0);
         tvnameJobx.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), 0, note.length(), 0);
         builderx.append(tvnameJobx);
+
 
         SpannableString textKey1 = new SpannableString(hienco);
         textKey1.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.textdetail)), 0, hienco.length(), 0);

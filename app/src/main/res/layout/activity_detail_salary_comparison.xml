@@ -14,42 +14,7 @@
 
         <include layout="@layout/layout_sosanh"></include>
 
-        <LinearLayout
-            android:weightSum="4"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tvHistory"
-                android:textColor="@color/purple"
-                android:layout_weight="3.5"
-                android:layout_marginLeft="23dp"
-                android:text="Lịch sử tìm kiếm"
-                android:textSize="14dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></TextView>
 
-            <TextView
-                android:onClick="tvedit"
-                android:layout_weight="0.5"
-                android:text="Sửa"
-                android:textAlignment="viewEnd"
-                android:textColor="@color/colorYellow"
-                android:layout_marginRight="23dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <ListView
-            android:stackFromBottom="true"
-            android:transcriptMode="normal"
-            android:layout_marginTop="10dp"
-            android:id="@+id/lvHis"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </ListView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -111,12 +76,13 @@
                     android:background="@drawable/ckeckbox">
 
                 </ImageView>
-                        <TextView
-                            android:id="@+id/idNamejob"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:textSize="15dp"></TextView>
+
+                <TextView
+                    android:id="@+id/idNamejob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="15dp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -219,7 +185,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -229,7 +194,7 @@
                     android:text="Bảng tổng hợp mức lương với công việc"
                     android:textColor="@color/purple"
                     android:textSize="17dp"
-                    android:fontFamily="@font/josefsemibold"></TextView>
+                    android:fontFamily="@font/josefsemibold" />
 
                 <TextView
                     android:id="@+id/tvnJ"
@@ -238,7 +203,7 @@
                     android:gravity="center"
                     android:textColor="@color/colorYellow"
                     android:textSize="17dp"
-                    android:textStyle="italic|bold"></TextView>
+                    android:textStyle="italic|bold" />
             </LinearLayout>
         </LinearLayout>
 
