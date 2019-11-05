@@ -13,19 +13,19 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.timviec365.R;
-import com.example.timviec365.fragment.AboutFragment;
+import com.example.timviec365.fragment.EstimateFragment;
 import com.example.timviec365.fragment.GrossNetFragment;
 import com.example.timviec365.fragment.HomeFragment;
-import com.example.timviec365.fragment.compareFragment;
+import com.example.timviec365.fragment.AboutFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private Toolbar toolbar;
     private BottomNavigationView navigationView;
     private HomeFragment homeFragment;
-    private AboutFragment aboutFragment;
+    private EstimateFragment estimateFragment;
     private GrossNetFragment grossNetFragment;
-    private compareFragment compareFragment;
+    private AboutFragment AboutFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 break;
 
             case R.id.bottom_action_note:
-                fragment = new AboutFragment();
+                fragment = new EstimateFragment();
                 break;
 
             case R.id.bottom_action_notifi:
@@ -71,7 +71,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 break;
 
             case R.id.bottom_action_setting:
-                fragment = new compareFragment();
+                fragment = new AboutFragment();
                 break;
         }
         return LoadFragment(fragment);

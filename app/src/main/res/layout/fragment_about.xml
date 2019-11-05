@@ -3,22 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.AboutFragment">
+    xmlns:shimmer="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.EstimateFragment">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/parent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-        <LinearLayout
 
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content" >
+        <LinearLayout
+            android:background="@color/bgsametableText"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
             <LinearLayout
                 android:id="@+id/imgConectApp"
@@ -37,235 +38,227 @@
                 </ImageView>
             </LinearLayout>
 
+            <TextView
+                android:layout_marginLeft="18dp"
+                android:text="Tin tức"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/yellow"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_view_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                shimmer:duration="800">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <include layout="@layout/data_placeholder_layout" />
+
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvTintuc"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_marginTop="10.7dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/lnShare"
+                android:layout_marginTop="24.2dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:src="@drawable/share">
+
+                </ImageView>
+
+                <TextView
+                    android:layout_marginLeft="13dp"
+                    android:text="Giới thiệu app so ánh lương cho bạn bè"
+                    android:textSize="15sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+            </LinearLayout>
+
+
+                <View
+                    android:layout_marginTop="10.5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/yellow"></View>
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-
-                <AutoCompleteTextView
-                    android:id="@+id/edNameJobSearchSalary"
+                <LinearLayout
+                    android:layout_marginTop="14.5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_below="@+id/imagetop"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/boder"
-                    android:drawableLeft="@drawable/ic_search"
-                    android:drawableRight="@drawable/ic_action_name"
-                    android:drawablePadding="12sp"
-                    android:hint="Công việc bạn muốn lựa chọn"
-                    android:maxLines="1"
-                    android:textSize="12dp">
+                    android:layout_height="wrap_content">
 
-                </AutoCompleteTextView>
+                    <ImageView
+                        android:layout_marginLeft="18dp"
+                        android:src="@drawable/huongdan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_marginLeft="13dp"
+                        android:text="Hướng dẫn sử dụng app"
+                        android:textSize="15sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </TextView>
+                </LinearLayout>
 
 
-
-                <AutoCompleteTextView
-                    android:id="@+id/SpCareerSearchSalary"
+                <View
+                    android:layout_marginTop="10.5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_below="@+id/imagetop"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/boder"
-                    android:drawableLeft="@drawable/ic_career"
-                    android:drawableRight="@drawable/ic_spinner"
-                    android:drawablePadding="12sp"
-                    android:hint="Ngành nghề (phù hợp với công việc)"
-                    android:maxLines="1"
-                    android:textSize="12dp">
-
-                </AutoCompleteTextView>
-
-
+                    android:layout_height="1dp"
+                    android:background="@color/yellow"></View>
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/lnAboutMe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_marginTop="14.5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_marginLeft="18dp"
+                        android:src="@drawable/chungtoi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_marginLeft="13dp"
+                        android:text="Về chúng tôi"
+                        android:textSize="15sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </TextView>
+                </LinearLayout>
 
 
-
+                <View
+                    android:layout_marginTop="10.5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/yellow"></View>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_below="@+id/tvThunhap"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="20dp"
-                android:orientation="horizontal"
-                android:weightSum="6">
-
-
-                <Button
-                    android:id="@+id/edFindSalary"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_weight="5.2"
-                    android:background="@drawable/styleedittext"
-                    android:inputType="number"
-                    android:text="Tra cứu lương"
-                    android:textColor="#FFFFFF"
-                    android:textSize="19dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
                 <LinearLayout
-                    android:id="@+id/lnInvisible"
+                    android:layout_marginTop="14.5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    <ImageView
+                        android:layout_marginLeft="18dp"
+                        android:src="@drawable/apptimviec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
-                    android:orientation="vertical">
+                    </ImageView>
 
-
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
+                    <TextView
+                        android:layout_marginLeft="13dp"
+                        android:text="Ứng dụng Timviec365.com"
+                        android:textSize="15sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:fontFamily="SemiBold"
-                                android:text="Tra cứu lương trung bình"
-                                android:textAlignment="center"
-                                android:textAllCaps="true"
-                                android:textColor="#FFC715"
-                                android:textSize="16dp">
-                            </TextView>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="SemiBold"
-                                android:text="theo vị trí công việc"
-                                android:textAlignment="center"
-                                android:textAllCaps="true"
-                                android:layout_marginBottom="15dp"
-                                android:textColor="#FFC715"
-                                android:textSize="16dp">
-
-                            </TextView>
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:background="@color/bgsametableText"
-                        android:layout_height="match_parent">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="125dp"
-                                android:layout_height="125dp"
-                                android:layout_margin="15dp"
-                                android:src="@drawable/img_tracuuluong"></ImageView>
-
-
-                            <TextView
-                                android:textSize="14sp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginRight="10dp"
-                                android:layout_marginTop="-20dp"
-                                android:text="So sánh mức lương hiện tại của bạn so với vị trí tương đương"
-                                android:textAlignment="viewEnd"
-                                android:textColor="@color/dark"
-                                tools:ignore="RtlCompat"></TextView>
-
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/bgsametableText"
-                            android:orientation="horizontal"
-                            android:weightSum="5">
-
-
-                            <TextView
-                                android:textSize="14sp"
-                                android:layout_weight="3"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginTop="-20dp"
-                                android:layout_marginRight="-10dp"
-                                android:text="Biết mức lương đang được các công ty trả cho vị trí công việc"
-                                android:textAlignment="viewStart"
-                                android:textColor="@color/dark"
-                                tools:ignore="RtlCompat"></TextView>
-
-                            <ImageView
-                                android:layout_margin="15dp"
-                                android:layout_weight="2"
-                                android:src="@drawable/aaaaaa"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"></ImageView>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_marginBottom="10dp"
-                            android:background="@color/white"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <ImageView
-                                android:layout_margin="15dp"
-                                android:src="@drawable/thongke"
-                                android:layout_width="125dp"
-                                android:layout_height="125dp"></ImageView>
-
-                            <TextView
-                                android:textSize="14sp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginRight="10dp"
-                                android:layout_marginTop="-20dp"
-                                android:text="Những vị trí công việc tương đương đang được tuyển dụng"
-                                android:textAlignment="viewEnd"
-                                android:textColor="@color/dark"
-                                tools:ignore="RtlCompat"></TextView>
-                        </LinearLayout>
-
-                    </LinearLayout>
+                    </TextView>
                 </LinearLayout>
 
-            </RelativeLayout>
+
+                <View
+                    android:layout_marginTop="10.5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/yellow"></View>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_marginTop="14.5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_marginLeft="18dp"
+                        android:src="@drawable/hotro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_marginLeft="13dp"
+                        android:text="Hỗ trợ trục tuyến"
+                        android:textSize="15sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </TextView>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
 
 
-</LinearLayout>
     </ScrollView>
-
 </FrameLayout>
