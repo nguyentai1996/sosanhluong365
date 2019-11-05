@@ -82,7 +82,6 @@
             android:layout_height="45dp"
             android:layout_weight="5.2"
             android:background="@drawable/styleedittext"
-            android:inputType="number"
             android:text="Tìm kiếm"
             android:textColor="#FFFFFF"
             android:textSize="19dp"
