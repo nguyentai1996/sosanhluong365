@@ -115,7 +115,7 @@ public class compareFragment extends Fragment {
                 if (response.code() == 200 && response.body() != null) {
                     adapterRCV.updateData(response.body());
                     adapterRCV.notifyDataSetChanged();
-
+                    rcvNews.setVisibility(View.VISIBLE);
                     mShimmerViewContainer.stopShimmerAnimation();
                     mShimmerViewContainer.setVisibility(View.GONE);
 
@@ -148,6 +148,8 @@ public class compareFragment extends Fragment {
     public void onResume() {
         super.onResume();
         mShimmerViewContainer.startShimmerAnimation();
+        rcvNews.setVisibility(View.GONE);
+
     }
 
     @Override
