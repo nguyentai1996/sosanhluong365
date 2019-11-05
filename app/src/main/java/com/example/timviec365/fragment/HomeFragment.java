@@ -153,7 +153,6 @@ public class HomeFragment extends Fragment implements OnChartValueSelectedListen
                 if (postionSpinner == -1) {
                     Toast.makeText(getContext(), "Địa điểm bạn nhập vào chưa đúng", Toast.LENGTH_SHORT).show();
                 } else {
-
                     History history = new History(random(), edNameJob.getText().toString().trim(), cityBeansList.get(postionSpinner).getIdCity(), edCityx.getText().toString().trim());
                     if (historyDAO.insertHistory(history) > 0) {
                         Intent intent = new Intent(getContext(), LoadHomeDialog.class);

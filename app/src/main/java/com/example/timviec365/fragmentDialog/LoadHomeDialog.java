@@ -29,28 +29,29 @@ public class LoadHomeDialog extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_load_dialog);
+            setContentView(R.layout.activity_load_dialog);
 
-        NetworkChangeReceiver = new NetworkChangeReceiver();
-        ProgressBar progressBar = findViewById(R.id.spin_kit);
-        Sprite doubleBounce = new Circle();
-        progressBar.setIndeterminateDrawable(doubleBounce);
+            NetworkChangeReceiver = new NetworkChangeReceiver();
+            ProgressBar progressBar = findViewById(R.id.spin_kit);
+            Sprite doubleBounce = new Circle();
+            progressBar.setIndeterminateDrawable(doubleBounce);
 
-        key = getIntent().getStringExtra("find");
-        thanhpho = getIntent().getStringExtra("pro");
-        namecity = getIntent().getStringExtra("namecity");
+            key = getIntent().getStringExtra("find");
+            thanhpho = getIntent().getStringExtra("pro");
+            namecity = getIntent().getStringExtra("namecity");
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                dowork();
-                star();
-                finish();
-            }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    dowork();
+                    star();
+                    finish();
+                }
 
-        }).start();
+            }).start();
 
-    }
+        }
+
 
     private void star() {
         broadcastIntent();
@@ -77,5 +78,7 @@ public class LoadHomeDialog extends AppCompatActivity {
     public void broadcastIntent() {
         registerReceiver(NetworkChangeReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
+
+
 
 }
