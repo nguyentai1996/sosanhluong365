@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +30,7 @@ import static com.example.timviec365.activity.DetailSalaryComparison.hideSoftKey
  */
 public class GrossNetFragment extends Fragment {
     private EditText edSalary;
-    private LinearLayout imgConectApp;
+    private ImageView imgConectApp;
     private EditText edDependent;
     private EditText edInsurrance;
     private RadioButton btnOther;

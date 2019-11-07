@@ -22,7 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,7 +68,7 @@ public class HomeFragment extends Fragment implements OnChartValueSelectedListen
     private int postionSpinner = -1;
     private TextView tvHistory,tvedit;
     private ListView lvHis;
-    private LinearLayout imgConectApp;
+    private ImageView imgConectApp;
     private Context context;
     HistoryHomeAdapter historyAdapter = null;
     HistoryDAO historyDAO;
@@ -79,7 +79,6 @@ public class HomeFragment extends Fragment implements OnChartValueSelectedListen
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         context = view.getContext();
@@ -171,7 +170,7 @@ public class HomeFragment extends Fragment implements OnChartValueSelectedListen
                 if (key.equals("")) {
                     Toast.makeText(getContext(), "Vui lòng nhập công việc", Toast.LENGTH_SHORT).show();
                 }
-                if (postionSpinner == -1) {
+                else if (postionSpinner == -1) {
                     Toast.makeText(getContext(), "Địa điểm bạn nhập vào chưa đúng", Toast.LENGTH_SHORT).show();
                 } else {
                     History history = new History(random(), edNameJob.getText().toString().trim(), cityBeansList.get(postionSpinner).getIdCity(), edCityx.getText().toString().trim());

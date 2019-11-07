@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,7 +60,7 @@ public class DetailSearchSalaryActivity extends AppCompatActivity  implements On
 
     private List<DataCompanyNumberOne> dataCompanyNumberOneList;
     private LinearLayoutManager linearLayoutManager;
-    private LinearLayout lnlayoutFull;
+    private ImageView imgConectApp;
     private  int postionSpinner = -1;
     private RecyclerView rcvCompany;
     private DataCompanyNumberOneAdapter adapterRCV;
@@ -106,6 +105,7 @@ public class DetailSearchSalaryActivity extends AppCompatActivity  implements On
 
         tvCareer = findViewById(R.id.Job);
         tvNameJob = findViewById(R.id.tvNamejob);
+        imgConectApp = findViewById(R.id.imgConectApp);
 
 
         dataCompanyNumberOneList = new ArrayList<>();
@@ -142,7 +142,15 @@ public class DetailSearchSalaryActivity extends AppCompatActivity  implements On
         spinerCareer();
         demoRetro();
 
-
+        imgConectApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent launchIntent = getApplicationContext().getPackageManager().getLaunchIntentForPackage("vn.timviec365.myapplication");
+                if (launchIntent != null) {
+                    startActivity(launchIntent);//null pointer check in case package name was not found
+                }
+            }
+        });
 
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -270,7 +278,7 @@ public class DetailSearchSalaryActivity extends AppCompatActivity  implements On
         entries.add(new Entry(5, dataChart3));
 
 
-        LineDataSet set = new LineDataSet(entries, "Lương theo tháng (VND)");
+        LineDataSet set = new LineDataSet(entries, "Lương theo tháng ( Tr VND)");
         set.setColor(Color.GREEN);
         set.setLineWidth(5f);
         set.setCircleColor(Color.RED);
@@ -498,9 +506,7 @@ public class DetailSearchSalaryActivity extends AppCompatActivity  implements On
                         dataChart();
                         setDataLine();
                     }
-                } else {
-                    Toast.makeText(DetailSearchSalaryActivity.this, "Không có dữ liệu", Toast.LENGTH_SHORT).show();
-                }
+                } 
             }
 
             @Override

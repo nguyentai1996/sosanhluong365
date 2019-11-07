@@ -19,7 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,7 +68,7 @@ public class DetailSalaryComparison extends AppCompatActivity {
     private int postionSpinner = -1,countcompany = 0;
     private String province = "";
     private BarChart mChart;
-    private LinearLayout imgConectApp;
+    private ImageView imgConectApp;
     private HistoryDAO historyDAO;
     private Button btnFind;
     private AutoCompleteTextView edCityx;
@@ -131,6 +131,16 @@ public class DetailSalaryComparison extends AppCompatActivity {
         sipner();
         getAdress();
 
+
+        imgConectApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent launchIntent = getApplicationContext().getPackageManager().getLaunchIntentForPackage("vn.timviec365.myapplication");
+                if (launchIntent != null) {
+                    startActivity(launchIntent);//null pointer check in case package name was not found
+                }
+            }
+        });
 
         btnFind.setOnClickListener(new View.OnClickListener() {
             @Override

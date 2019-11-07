@@ -13,7 +13,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +42,7 @@ public class EstimateFragment extends Fragment {
 
     private ArrayList<Career> careerArrayList = new ArrayList<>();
     private ImageView imgMore;
-    private LinearLayout imgConectApp;
+    private ImageView imgConectApp;
     private int postionSpinner = -1;
 
     private Button edFindSalary;

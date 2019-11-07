@@ -253,7 +253,7 @@
                         android:orientation="horizontal">
 
 
-                        <com.github.mikephil.charting.charts.BarChart
+                        <com.github.mikephil.charting.charts.CombinedChart
                             android:layout_marginTop="15dp"
                             android:id="@+id/combinedChart"
                             android:background="@color/white"

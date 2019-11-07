@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -40,7 +41,7 @@ public class AboutFragment extends Fragment {
     private List<DataNews>  dataNewsList = new ArrayList<>();
     private LinearLayoutManager linearLayoutManager;
     private RecyclerView rcvNews;
-    private LinearLayout imgConectApp;
+    private ImageView imgConectApp;
     private LinearLayout lnShare;
     private NewsAdapter adapterRCV;
     private LinearLayout lnAboutMe;
@@ -59,7 +60,7 @@ public class AboutFragment extends Fragment {
         rcvNews = (RecyclerView) view.findViewById(R.id.rcvTintuc);
         lnShare = (LinearLayout) view.findViewById(R.id.lnShare);
         lnAboutMe = (LinearLayout) view.findViewById(R.id.lnAboutMe);
-        imgConectApp = (LinearLayout) view.findViewById(R.id.imgConectApp);
+        imgConectApp =  view.findViewById(R.id.imgConectApp);
 
 
 

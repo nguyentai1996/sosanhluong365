@@ -26,12 +26,17 @@ import com.example.timviec365.fragmentDialog.LoadSearchSalaryDialog;
 import com.example.timviec365.model.Career;
 import com.example.timviec365.model.DataCompanyNumberOne;
 import com.example.timviec365.model.DataSearchSalary;
-import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.CombinedChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.CombinedData;
+import com.github.mikephil.charting.data.DataSet;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,7 +59,6 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
     private RecyclerView rcvCompany;
     private DataCompanyNumberOneAdapter adapterRCV;
 
-
     private ArrayList<Career> careerArrayList = new ArrayList<>();
     private Spinner spCareer;
 
@@ -62,12 +66,13 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
     private AutoCompleteTextView edNameJob, edLevel, edExperience, edform, edGender, edRank, edCareerSearchSalary;
     private TextView tvSalaryDown,tvSalaryDown2,career, tvSalarySearch, tvCareer, tvNameJob, tvAdress, tvLevel, tvExperience, tvform, tvGender, tvRank;
     private ImageView imgMore;
+    private float dataChart1, dataChart2, dataChart3;
 
     private int postionSpinner = -1;
     private String getNganhnghe = "", City = "", Form = "", Level = "", Gender = "", Rank = "", Exp = "";
-    private BarChart mChart;
+    private CombinedChart mChart;
     private String nameCat = "", nameCity = "", postionCareer, nameCareer = "", findkey, ponganhnghe, positionCityx, positionFormx = "", positionLevelx = "", positionExpx = "", positionGenderx = "", positionRankx = "";
-    private String dataChart1, dataChart2, dataChart3;
+
 
 
     @Override
@@ -79,12 +84,10 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
         getInten();
         setTitel();
         spinerCareer();
-
+        setDataLine();
         demoRetro();
         getDataCompanyNumberOne();
 
-
-        mChart.setFitBars(true);
 
         imgMore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,7 +130,6 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
                 } else if (postionSpinner == -1) {
                     Toast.makeText(DetailDialogSearchSalary.this, "Ngành nghề bạn nhập vào chưa đúng", Toast.LENGTH_SHORT).show();
                 } else {
-
                     Intent intent = new Intent(DetailDialogSearchSalary.this, LoadSearchSalaryDialog.class);
                     intent.putExtra("key", findkey);
                     intent.putExtra("career", careerArrayList.get(postionSpinner).getIdCat());
@@ -182,7 +184,7 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
 
 
     private void init() {
-        mChart = (BarChart) findViewById(R.id.combinedChart);
+        mChart = findViewById(R.id.combinedChart);
         edFindSalary = findViewById(R.id.edFindSalary);
         imgMore = findViewById(R.id.imgMore);
         tvSalaryDown = findViewById(R.id.tvSalaryDown);
@@ -218,34 +220,82 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
         alertDialog.show(fm, "fragment_alert");
     }
 
-    private void setDataBarChart() {
-        ArrayList<BarEntry> yVals = new ArrayList<>();
+    private void setDataLine() {
+        YAxis rightAxis = mChart.getAxisRight();
+        rightAxis.setDrawGridLines(false);
+        rightAxis.setAxisMinimum(0f);
 
-        yVals.add(new BarEntry(0, Float.parseFloat(dataChart1)));
-        yVals.add(new BarEntry(1, Float.parseFloat(dataChart2)));
-        yVals.add(new BarEntry(2, Float.parseFloat(dataChart3)));
+        YAxis leftAxis = mChart.getAxisLeft();
+        leftAxis.setDrawGridLines(false);
+        leftAxis.setAxisMinimum(0f);
 
-        mChart.getDescription().setEnabled(false);
-        BarDataSet set = new BarDataSet(yVals, "data set1");
-        set.setColor(Color.YELLOW);
-        final String[] exp = new String[]{"Thấp nhất", "Trung bình", "Cao nhất"};
-        IndexAxisValueFormatter formatter = new IndexAxisValueFormatter(exp);
-        set.setDrawValues(true);
+        final List<String> xLabel = new ArrayList<>();
+        xLabel.add("0");
+        xLabel.add("Thấp nhất");
+        xLabel.add("");
+        xLabel.add("Trung bình");
+        xLabel.add("");
+        xLabel.add("Cao nhất");
+        xLabel.add("0");
+
+
         XAxis xAxis = mChart.getXAxis();
-        xAxis.setValueFormatter(formatter);
-        xAxis.setDrawGridLines(false);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        BarData barData = new BarData(set);
-        mChart.setData(barData);
+        xAxis.setAxisMinimum(0f);
+        xAxis.setGranularity(1f);
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return xLabel.get((int) value % xLabel.size());
+            }
+        });
+
+        CombinedData data = new CombinedData();
+        LineData lineDatas = new LineData();
+        lineDatas.addDataSet((ILineDataSet) dataChart());
+
+        data.setData(lineDatas);
+
+        xAxis.setAxisMaximum(data.getXMax() + 1f);
+
+        mChart.setData(data);
         mChart.invalidate();
+
+    }
+
+    private DataSet dataChart() {
+
+        LineData d = new LineData();
+
+
+        ArrayList<Entry> entries = new ArrayList<Entry>();
+
+
+
+        entries.add(new Entry(1, (float) dataChart1));
+        entries.add(new Entry(3, dataChart2));
+        entries.add(new Entry(5, dataChart3));
+
+
+        LineDataSet set = new LineDataSet(entries, "Lương theo tháng ( Tr VND)");
+        set.setColor(Color.GREEN);
+        set.setLineWidth(5f);
+        set.setCircleColor(Color.RED);
+        set.setCircleRadius(7f);
+        set.setFillColor(Color.GREEN);
+        set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        set.setDrawValues(true);
+        set.setValueTextSize(15f);
+        set.setValueTextColor(Color.RED);
         mChart.setTouchEnabled(false);
         mChart.setDragEnabled(false);
         mChart.setPinchZoom(false);
-        mChart.setFitBars(true);
-        mChart.animateY(500);
 
-
+        set.setAxisDependency(YAxis.AxisDependency.LEFT);
+        d.addDataSet(set);
+        return set;
     }
+
 
     public void demoRetro() {
         positionExpx = getIntent().getStringExtra("positionExpx");
@@ -281,15 +331,14 @@ public class DetailDialogSearchSalary extends AppCompatActivity {
                     tvSalaryDown.setText(dataSearchSalary.getData().get(1).getIndexLabel() + " Nghìn");
                     tvSalaryDown2.setText(dataSearchSalary.getData().get(1).getIndexLabel()  + " Nghìn");
                     tvSalaryDown2.setTextColor(getResources().getColor(R.color.colorYellow));
-                    dataChart1 = String.valueOf(dataSearchSalary.getData().get(0).getY());
-                    dataChart2 = String.valueOf(dataSearchSalary.getData().get(1).getY());
-                    dataChart3 = String.valueOf(dataSearchSalary.getData().get(2).getY());
+                    dataChart1 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(0).getY()));
+                    dataChart2 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(1).getY()));
+                    dataChart3 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(2).getY()));
 
 
-                    setDataBarChart();
+                    dataChart();
+                    setDataLine();
 
-                } else {
-                    Toast.makeText(DetailDialogSearchSalary.this, "Không có dữ liệu", Toast.LENGTH_SHORT).show();
                 }
             }
 
