@@ -351,7 +351,7 @@ public class DetailSearchSalaryActivity extends AppCompatActivity  implements On
                         dataSearchSalary.getData().get(0).getY();
                         tvSalarySearch.setText(dataSearchSalary.getData().get(1).getIndexLabel() + "\n" + "Nghìn");
                         tvSalaryDown.setText(String.valueOf(dataSearchSalary.getData().get(1).getIndexLabel()) );
-                        tvSalaryDown2.setText(String.valueOf(dataSearchSalary.getData().get(1).getIndexLabel()) + "Nghìn" );
+                        tvSalaryDown2.setText(String.valueOf(dataSearchSalary.getData().get(1).getIndexLabel()) + " Nghìn" );
                         tvSalaryDown2.setTextColor(getResources().getColor(R.color.colorYellow));
                         dataChart1 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(0).getY()));
                         dataChart2 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(1).getY()));
@@ -360,8 +360,6 @@ public class DetailSearchSalaryActivity extends AppCompatActivity  implements On
                         dataChart();
                         setDataLine();
                     }
-                } else {
-                    Toast.makeText(DetailSearchSalaryActivity.this, "Không có dữ liệu", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -398,8 +396,6 @@ public class DetailSearchSalaryActivity extends AppCompatActivity  implements On
                     adapterRCV.notifyDataSetChanged();
 
 
-                } else {
-                    Toast.makeText(DetailSearchSalaryActivity.this, "Không có dữ liệu", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -431,10 +427,6 @@ public class DetailSearchSalaryActivity extends AppCompatActivity  implements On
                     adapterRCV.clearList();
                     adapterRCV.updateData(response.body());
                     adapterRCV.notifyDataSetChanged();
-
-
-                } else {
-                    Toast.makeText(DetailSearchSalaryActivity.this, "Không có dữ liệu", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -488,25 +480,17 @@ public class DetailSearchSalaryActivity extends AppCompatActivity  implements On
                 if (response.code() == 200 && response.body() != null) {
                     DataSearchSalary dataSearchSalary = response.body();
 
-                    if (findkey == null) {
-                        Toast.makeText(DetailSearchSalaryActivity.this, "không có dữ liệu vui lòng nhập lại", Toast.LENGTH_SHORT).show();
-                    }
-                    if (dataSearchSalary.getData() == null) {
-                        Toast.makeText(DetailSearchSalaryActivity.this, "Không có dữ liệu", Toast.LENGTH_SHORT).show();
-                    } else {
+                    dataSearchSalary.getData().get(0).getY();
+                    tvSalarySearch.setText(dataSearchSalary.getData().get(1).getIndexLabel() + "Nghìn");
+                    tvSalaryDown.setText(dataSearchSalary.getData().get(1).getIndexLabel() + " Nghìn");
+                    tvSalaryDown2.setText(dataSearchSalary.getData().get(1).getIndexLabel() + " Nghìn");
+                    dataChart1 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(0).getY()));
+                    dataChart2 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(1).getY()));
+                    dataChart3 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(2).getY()));
 
-                        dataSearchSalary.getData().get(0).getY();
-                        tvSalarySearch.setText(dataSearchSalary.getData().get(1).getIndexLabel() + "Nghìn");
-                        tvSalaryDown.setText(dataSearchSalary.getData().get(1).getIndexLabel()  + " Nghìn");
-                        tvSalaryDown2.setText(dataSearchSalary.getData().get(1).getIndexLabel()  + " Nghìn");
-                        dataChart1 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(0).getY()));
-                        dataChart2 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(1).getY()));
-                        dataChart3 = Float.parseFloat(String.valueOf(dataSearchSalary.getData().get(2).getY()));
-
-                        dataChart();
-                        setDataLine();
-                    }
-                } 
+                    dataChart();
+                    setDataLine();
+                }
             }
 
             @Override

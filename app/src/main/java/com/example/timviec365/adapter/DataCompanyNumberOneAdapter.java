@@ -1,5 +1,6 @@
 package com.example.timviec365.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -39,15 +40,23 @@ public class DataCompanyNumberOneAdapter extends RecyclerView.Adapter<DataCompan
         return viewHolder;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final DataCompanyNumberOne dataCompany = dataCompanyNumberOneList.get(i);
+
+
+
+
 
         viewHolder.tvTitle.setText(dataCompany.getCompanyname() +"");
         viewHolder.tvCongty.setText(dataCompany.getTitle() +"");
         viewHolder.tvSalary.setText(dataCompany.getMucluong() +"");
         viewHolder.tvDiadiem.setText(dataCompany.getDiachi() +"");
         viewHolder.tvtime.setText(dataCompany.getNgaytao() +"");
+
+
+
         viewHolder.btnwebview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,6 +88,8 @@ public class DataCompanyNumberOneAdapter extends RecyclerView.Adapter<DataCompan
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+
 
             postImg = (ImageView) itemView.findViewById(R.id.imgUv);
             tvCongty = (TextView) itemView.findViewById(R.id.tvCongty);
